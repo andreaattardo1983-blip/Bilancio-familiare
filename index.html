@@ -27,7 +27,7 @@
 <body class="bg-gradient-to-br from-slate-100 via-indigo-50/40 to-emerald-50/40 text-slate-800 min-h-screen">
   <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 space-y-6">
 
-    <!-- Header Vivace -->
+    <!-- Header -->
     <header class="bg-white/95 backdrop-blur p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div class="flex items-center gap-3.5">
         <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 text-white font-display font-extrabold text-xl flex items-center justify-center shadow-md shadow-emerald-500/20">
@@ -60,73 +60,80 @@
       </span>
     </div>
 
-    <!-- Bento Grid Principale: Riquadri Colorati di Diverse Dimensioni -->
-    <section class="grid grid-cols-1 md:grid-cols-12 gap-4">
-      <!-- Riquadro Grande: Saldo Familiare -->
-      <div class="md:col-span-6 lg:col-span-5 rounded-3xl p-6 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/15 flex flex-col justify-between min-h-[190px]">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare</span>
+    <!-- Primo Piano: Saldo Familiare Grande + Saldo Iniziale -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div class="lg:col-span-8 rounded-3xl p-6 sm:p-8 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/20 flex flex-col justify-between min-h-[210px]">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare in Primo Piano</span>
           <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/15 backdrop-blur">Live Cloud</span>
         </div>
-        <div class="my-3">
-          <p id="kpiSaldo" class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight">€ 0,00</p>
-          <p class="mt-1.5 text-xs sm:text-sm text-emerald-100/90">Saldo iniziale + tutte le entrate − tutte le uscite</p>
+
+        <div class="my-4">
+          <p id="kpiSaldo" class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight">€ 0,00</p>
+          <p class="mt-2 text-xs sm:text-sm text-emerald-100/90">Saldo iniziale + entrate totali − uscite totali</p>
         </div>
-        <div class="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-emerald-50">
+
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/15 text-xs text-emerald-50">
           <span id="etichettaMese" class="font-semibold capitalize"></span>
           <span id="kpiConteggioTotale">0 movimenti totali</span>
         </div>
       </div>
 
-      <!-- Riquadro Medio: Entrate -->
-      <div class="md:col-span-6 lg:col-span-4 rounded-3xl p-6 bg-gradient-to-br from-lime-400/25 via-emerald-400/20 to-white border border-emerald-200/80 shadow-sm flex flex-col justify-between min-h-[190px]">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Entrate Totali</span>
-          <span class="w-9 h-9 rounded-2xl bg-emerald-500 text-white flex items-center justify-center font-bold text-base shadow-sm">+</span>
-        </div>
+      <div class="lg:col-span-4 rounded-3xl p-6 bg-gradient-to-br from-violet-600 to-indigo-700 text-white shadow-md shadow-indigo-600/15 flex flex-col justify-between min-h-[210px]">
         <div>
-          <p id="kpiEntrate" class="font-display text-3xl sm:text-4xl font-extrabold text-emerald-700">€ 0,00</p>
-          <p id="kpiConteggioEntrate" class="mt-1 text-xs font-medium text-emerald-900/70">0 entrate registrate</p>
+          <label for="inputSaldoIniziale" class="block text-xs font-bold uppercase tracking-wider text-indigo-100">
+            Saldo Iniziale (€)
+          </label>
+          <p class="text-xs text-indigo-100/85 mt-1.5">Base di partenza del conto condiviso in cloud.</p>
         </div>
-        <div class="text-xs font-semibold text-emerald-800 bg-emerald-100/70 px-3 py-1.5 rounded-xl flex items-center justify-between">
-          <span>Questo mese</span>
-          <span id="meseEntrate">€ 0,00</span>
-        </div>
-      </div>
 
-      <!-- Riquadro Compatto: Saldo Iniziale -->
-      <div class="md:col-span-12 lg:col-span-3 rounded-3xl p-5 bg-gradient-to-br from-violet-600 to-indigo-700 text-white shadow-md shadow-indigo-600/15 flex flex-col justify-between min-h-[190px]">
-        <label for="inputSaldoIniziale" class="block text-xs font-bold uppercase tracking-wider text-indigo-100">
-          Saldo Iniziale (€)
-        </label>
-        <p class="text-xs text-indigo-100/85 mt-1">Base di partenza del conto condiviso.</p>
-        <div class="mt-3 space-y-2">
+        <div class="mt-4 space-y-2.5">
           <input id="inputSaldoIniziale" type="number" step="0.01" placeholder="0.00" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/95 text-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-300" />
-          <button id="btnSalvaSaldo" type="button" class="w-full py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold uppercase tracking-wider transition">
+          <button id="btnSalvaSaldo" type="button" class="w-full py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold uppercase tracking-wider transition">
             Aggiorna Saldo
           </button>
         </div>
       </div>
+    </section>
 
-      <!-- Riquadro Largo Colorato: Uscite -->
-      <div class="md:col-span-12 rounded-3xl p-6 bg-gradient-to-r from-rose-500 via-pink-600 to-orange-500 text-white shadow-lg shadow-rose-500/15 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div class="space-y-1">
-          <div class="flex items-center gap-2.5">
-            <span class="text-xs font-bold uppercase tracking-widest text-rose-100">Uscite Totali</span>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/15">Spese</span>
-          </div>
-          <p id="kpiUscite" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
-          <p id="kpiConteggioUscite" class="text-xs font-semibold text-rose-100">0 uscite registrate</p>
+    <!-- Quadrati Uguali: Entrate vs Uscite -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="sm:aspect-square sm:max-h-[340px] w-full rounded-3xl p-6 bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/15 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Entrate</span>
+          <span class="w-9 h-9 rounded-2xl bg-white/20 text-white flex items-center justify-center font-bold text-lg">+</span>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 lg:w-80 text-xs">
-          <div class="bg-white/15 backdrop-blur rounded-2xl px-4 py-3">
+        <div>
+          <p id="kpiEntrate" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
+          <p id="kpiConteggioEntrate" class="mt-1 text-xs font-medium text-emerald-100/90">0 entrate registrate</p>
+        </div>
+
+        <div class="bg-white/15 backdrop-blur rounded-2xl px-4 py-2.5 text-xs flex items-center justify-between">
+          <span class="text-emerald-50">Entrate mese</span>
+          <strong id="meseEntrate" class="text-sm font-extrabold">€ 0,00</strong>
+        </div>
+      </div>
+
+      <div class="sm:aspect-square sm:max-h-[340px] w-full rounded-3xl p-6 bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-600/15 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-widest text-rose-100">Uscite</span>
+          <span class="w-9 h-9 rounded-2xl bg-white/20 text-white flex items-center justify-center font-bold text-lg">−</span>
+        </div>
+
+        <div>
+          <p id="kpiUscite" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
+          <p id="kpiConteggioUscite" class="mt-1 text-xs font-medium text-rose-100/90">0 uscite registrate</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-white/15 backdrop-blur rounded-2xl px-3 py-2">
             <span class="text-rose-100 block text-[11px]">Uscite mese</span>
-            <strong id="meseUscite" class="text-base">€ 0,00</strong>
+            <strong id="meseUscite" class="text-sm font-extrabold">€ 0,00</strong>
           </div>
-          <div class="bg-white/15 backdrop-blur rounded-2xl px-4 py-3">
+          <div class="bg-white/15 backdrop-blur rounded-2xl px-3 py-2">
             <span class="text-rose-100 block text-[11px]">Media uscita</span>
-            <strong id="mediaUscita" class="text-base">€ 0,00</strong>
+            <strong id="mediaUscita" class="text-sm font-extrabold">€ 0,00</strong>
           </div>
         </div>
       </div>
@@ -149,7 +156,7 @@
       </div>
     </section>
 
-    <!-- Modulo + Grafici Asimmetrici -->
+    <!-- Modulo + Grafici -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       <form id="formMovimento" class="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
         <div class="flex items-center justify-between">
@@ -228,7 +235,7 @@
       </div>
     </section>
 
-    <!-- Storico Movimenti (mostra chi ha fatto cosa) -->
+    <!-- Storico Movimenti -->
     <section class="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <div>
