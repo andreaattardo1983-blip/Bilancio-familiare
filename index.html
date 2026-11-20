@@ -44,6 +44,9 @@
           <span id="syncDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
           <span id="syncText">Connessione al cloud...</span>
         </span>
+        <button id="btnToggleResoconto" type="button" aria-expanded="false" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition">
+          📊 Resoconto
+        </button>
         <button id="btnResetFiltri" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
           Azzera filtri
         </button>
@@ -60,8 +63,8 @@
       </span>
     </div>
 
-    <!-- Primo Piano: Saldo Familiare con Widget Saldo Iniziale Interno + Quadrati Compatti Entrate / Uscite -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+    <!-- Primo Piano: Saldo Familiare + Quadrato Unico Diviso in 2 (Entrate e Uscite) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
       <div class="lg:col-span-6 rounded-3xl p-6 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/20 flex flex-col justify-between gap-4">
         <div class="flex items-center justify-between gap-2">
           <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare</span>
@@ -101,45 +104,48 @@
         </div>
       </div>
 
-      <div class="lg:col-span-6 grid grid-cols-2 gap-3 sm:gap-4 justify-items-center">
-        <div class="aspect-square w-full max-w-[220px] rounded-3xl p-4 sm:p-5 bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/15 flex flex-col justify-between">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-100">Entrate</span>
-            <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">+</span>
+      <!-- Quadrato Unico Diviso in 2 Quadrati Più Piccoli: Entrate e Uscite -->
+      <div class="lg:col-span-6 rounded-3xl p-4 sm:p-5 bg-white border border-slate-200/90 shadow-sm flex flex-col justify-center">
+        <div class="grid grid-cols-2 gap-3 sm:gap-4 h-full items-center">
+          <div class="aspect-square w-full rounded-2xl p-4 bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/15 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-100">Entrate</span>
+              <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">+</span>
+            </div>
+
+            <div>
+              <p id="kpiEntrate" class="font-display text-lg sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
+              <p id="kpiConteggioEntrate" class="mt-0.5 text-[11px] text-emerald-100/90">0 entrate</p>
+            </div>
+
+            <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between gap-1">
+              <span class="text-emerald-50">Mese</span>
+              <strong id="meseEntrate" class="font-extrabold truncate">€ 0,00</strong>
+            </div>
           </div>
 
-          <div>
-            <p id="kpiEntrate" class="font-display text-xl sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
-            <p id="kpiConteggioEntrate" class="mt-0.5 text-[11px] text-emerald-100/90">0 entrate</p>
-          </div>
+          <div class="aspect-square w-full rounded-2xl p-4 bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-600/15 flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-rose-100">Uscite</span>
+              <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">−</span>
+            </div>
 
-          <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between">
-            <span class="text-emerald-50">Mese</span>
-            <strong id="meseEntrate" class="font-extrabold">€ 0,00</strong>
-          </div>
-        </div>
+            <div>
+              <p id="kpiUscite" class="font-display text-lg sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
+              <p id="kpiConteggioUscite" class="mt-0.5 text-[11px] text-rose-100/90">0 uscite</p>
+            </div>
 
-        <div class="aspect-square w-full max-w-[220px] rounded-3xl p-4 sm:p-5 bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-600/15 flex flex-col justify-between">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-100">Uscite</span>
-            <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">−</span>
-          </div>
-
-          <div>
-            <p id="kpiUscite" class="font-display text-xl sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
-            <p id="kpiConteggioUscite" class="mt-0.5 text-[11px] text-rose-100/90">0 uscite</p>
-          </div>
-
-          <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between">
-            <span class="text-rose-50">Mese</span>
-            <strong id="meseUscite" class="font-extrabold">€ 0,00</strong>
+            <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between gap-1">
+              <span class="text-rose-50">Mese</span>
+              <strong id="meseUscite" class="font-extrabold truncate">€ 0,00</strong>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Nuovo Widget: Resoconto Entrate e Uscite (Giornaliero / Settimanale / Mensile / Annuale) -->
-    <section class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
+    <!-- Resoconto Entrate e Uscite (Chiuso di default, si apre e chiude solo al clic sul bottone) -->
+    <section id="pannelloResoconto" class="hidden bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
           <h2 class="font-display text-base sm:text-lg font-extrabold text-slate-900">Resoconto Entrate e Uscite</h2>
@@ -397,7 +403,7 @@
       messagingSenderId: "320243941396",
       appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
       measurementId: "G-GV32S3W16V"
-    }; //[cite: 6]
+    };[cite: 6]
 
     const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
     const inputSaldoEl = document.getElementById("inputSaldoIniziale");
@@ -405,6 +411,8 @@
     const categoriaSelectEl = document.getElementById("categoria");
     const boxNuovaCategoriaEl = document.getElementById("boxNuovaCategoria");
     const inputNuovaCategoriaEl = document.getElementById("inputNuovaCategoria");
+    const pannelloResocontoEl = document.getElementById("pannelloResoconto");
+    const btnToggleResocontoEl = document.getElementById("btnToggleResoconto");
 
     dataInputEl.valueAsDate = new Date();
 
@@ -432,6 +440,20 @@
       "Stipendio",
       "Altro"
     ];
+
+    btnToggleResocontoEl.addEventListener("click", () => {
+      const aperto = !pannelloResocontoEl.classList.contains("hidden");
+      if (aperto) {
+        pannelloResocontoEl.classList.add("hidden");
+        btnToggleResocontoEl.setAttribute("aria-expanded", "false");
+        btnToggleResocontoEl.textContent = "📊 Resoconto";
+      } else {
+        pannelloResocontoEl.classList.remove("hidden");
+        btnToggleResocontoEl.setAttribute("aria-expanded", "true");
+        btnToggleResocontoEl.textContent = "✕ Chiudi Resoconto";
+        aggiornaResocontoPeriodo();
+      }
+    });
 
     function impostaStatoCloud(stato, testo, bannerMsg, badgeText) {
       const dot = document.getElementById("syncDot");
@@ -488,7 +510,7 @@
         movPeriodo = movimenti.filter((m) => m.data === rifDateStr);
       } else if (periodoResoconto === "settimanale") {
         etichettaPeriodo = "Settimanale";
-        const giornoSett = (dataRif.getDay() + 6) % 7; // lun = 0, dom = 6
+        const giornoSett = (dataRif.getDay() + 6) % 7;
         const inizioSett = new Date(dataRif);
         inizioSett.setDate(dataRif.getDate() - giornoSett);
         inizioSett.setHours(0, 0, 0, 0);
@@ -563,7 +585,9 @@
       document.getElementById("meseUscite").textContent = eur.format(usciteMese);
       document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
 
-      aggiornaResocontoPeriodo();
+      if (!pannelloResocontoEl.classList.contains("hidden")) {
+        aggiornaResocontoPeriodo();
+      }
 
       const totaliCat = {};
       filtrati
@@ -689,7 +713,11 @@
       });
     });
 
-    dataInputEl.addEventListener("change", aggiornaResocontoPeriodo);
+    dataInputEl.addEventListener("change", () => {
+      if (!pannelloResocontoEl.classList.contains("hidden")) {
+        aggiornaResocontoPeriodo();
+      }
+    });
 
     document.getElementById("btnToggleNuovaCategoria").addEventListener("click", () => {
       boxNuovaCategoriaEl.classList.toggle("hidden");
