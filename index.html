@@ -60,99 +60,111 @@
       </span>
     </div>
 
-    <!-- Primo Piano: Saldo Familiare Grande + Saldo Iniziale -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-      <div class="lg:col-span-8 rounded-3xl p-6 sm:p-8 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/20 flex flex-col justify-between min-h-[210px]">
+    <!-- Primo Piano: Saldo Familiare con Widget Saldo Iniziale Interno + Quadrati Compatti Entrate / Uscite -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+      <div class="lg:col-span-6 rounded-3xl p-6 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/20 flex flex-col justify-between gap-4">
         <div class="flex items-center justify-between gap-2">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare in Primo Piano</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare</span>
           <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/15 backdrop-blur">Live Cloud</span>
         </div>
 
-        <div class="my-4">
-          <p id="kpiSaldo" class="font-display text-4xl sm:text-6xl font-extrabold tracking-tight">€ 0,00</p>
-          <p class="mt-2 text-xs sm:text-sm text-emerald-100/90">Saldo iniziale + entrate totali − uscite totali</p>
+        <div>
+          <p id="kpiSaldo" class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight">€ 0,00</p>
+          <p class="mt-1 text-xs text-emerald-100/90">Saldo iniziale + entrate − uscite</p>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/15 text-xs text-emerald-50">
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <label for="inputSaldoIniziale" class="text-xs font-bold text-emerald-50 shrink-0">
+            Saldo iniziale (€)
+          </label>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <input
+              id="inputSaldoIniziale"
+              type="number"
+              step="0.01"
+              placeholder="0.00"
+              class="w-full sm:w-32 px-3 py-1.5 rounded-xl bg-white text-slate-900 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-amber-300"
+            />
+            <button
+              id="btnSalvaSaldo"
+              type="button"
+              class="px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold transition shrink-0"
+            >
+              Salva
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-emerald-50/90 pt-1">
           <span id="etichettaMese" class="font-semibold capitalize"></span>
           <span id="kpiConteggioTotale">0 movimenti totali</span>
         </div>
       </div>
 
-      <div class="lg:col-span-4 rounded-3xl p-6 bg-gradient-to-br from-violet-600 to-indigo-700 text-white shadow-md shadow-indigo-600/15 flex flex-col justify-between min-h-[210px]">
-        <div>
-          <label for="inputSaldoIniziale" class="block text-xs font-bold uppercase tracking-wider text-indigo-100">
-            Saldo Iniziale (€)
-          </label>
-          <p class="text-xs text-indigo-100/85 mt-1.5">Base di partenza del conto condiviso in cloud.</p>
-        </div>
-
-        <div class="mt-4 space-y-2.5">
-          <input id="inputSaldoIniziale" type="number" step="0.01" placeholder="0.00" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/95 text-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-300" />
-          <button id="btnSalvaSaldo" type="button" class="w-full py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold uppercase tracking-wider transition">
-            Aggiorna Saldo
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quadrati Uguali: Entrate vs Uscite -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="sm:aspect-square sm:max-h-[340px] w-full rounded-3xl p-6 bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/15 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Entrate</span>
-          <span class="w-9 h-9 rounded-2xl bg-white/20 text-white flex items-center justify-center font-bold text-lg">+</span>
-        </div>
-
-        <div>
-          <p id="kpiEntrate" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
-          <p id="kpiConteggioEntrate" class="mt-1 text-xs font-medium text-emerald-100/90">0 entrate registrate</p>
-        </div>
-
-        <div class="bg-white/15 backdrop-blur rounded-2xl px-4 py-2.5 text-xs flex items-center justify-between">
-          <span class="text-emerald-50">Entrate mese</span>
-          <strong id="meseEntrate" class="text-sm font-extrabold">€ 0,00</strong>
-        </div>
-      </div>
-
-      <div class="sm:aspect-square sm:max-h-[340px] w-full rounded-3xl p-6 bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-600/15 flex flex-col justify-between">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-widest text-rose-100">Uscite</span>
-          <span class="w-9 h-9 rounded-2xl bg-white/20 text-white flex items-center justify-center font-bold text-lg">−</span>
-        </div>
-
-        <div>
-          <p id="kpiUscite" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
-          <p id="kpiConteggioUscite" class="mt-1 text-xs font-medium text-rose-100/90">0 uscite registrate</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 text-xs">
-          <div class="bg-white/15 backdrop-blur rounded-2xl px-3 py-2">
-            <span class="text-rose-100 block text-[11px]">Uscite mese</span>
-            <strong id="meseUscite" class="text-sm font-extrabold">€ 0,00</strong>
+      <div class="lg:col-span-6 grid grid-cols-2 gap-3 sm:gap-4 justify-items-center">
+        <div class="aspect-square w-full max-w-[230px] rounded-3xl p-4 sm:p-5 bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/15 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-100">Entrate</span>
+            <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">+</span>
           </div>
-          <div class="bg-white/15 backdrop-blur rounded-2xl px-3 py-2">
-            <span class="text-rose-100 block text-[11px]">Media uscita</span>
-            <strong id="mediaUscita" class="text-sm font-extrabold">€ 0,00</strong>
+
+          <div>
+            <p id="kpiEntrate" class="font-display text-xl sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
+            <p id="kpiConteggioEntrate" class="mt-0.5 text-[11px] text-emerald-100/90">0 entrate</p>
+          </div>
+
+          <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between">
+            <span class="text-emerald-50">Mese</span>
+            <strong id="meseEntrate" class="font-extrabold">€ 0,00</strong>
+          </div>
+        </div>
+
+        <div class="aspect-square w-full max-w-[230px] rounded-3xl p-4 sm:p-5 bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-md shadow-rose-600/15 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-rose-100">Uscite</span>
+            <span class="w-7 h-7 rounded-xl bg-white/20 flex items-center justify-center font-bold text-sm">−</span>
+          </div>
+
+          <div>
+            <p id="kpiUscite" class="font-display text-xl sm:text-2xl font-extrabold leading-tight">€ 0,00</p>
+            <p id="kpiConteggioUscite" class="mt-0.5 text-[11px] text-rose-100/90">0 uscite</p>
+          </div>
+
+          <div class="bg-white/15 rounded-xl px-2.5 py-1.5 text-[11px] flex items-center justify-between">
+            <span class="text-rose-50">Mese</span>
+            <strong id="meseUscite" class="font-extrabold">€ 0,00</strong>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Azioni Rapide Colorate -->
+    <!-- Comandi Rapidi in 2 Righe da 3 -->
     <section class="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm space-y-3">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-        <h2 class="font-display text-sm font-extrabold uppercase tracking-wider text-slate-700">Inserimento Rapido</h2>
-        <span class="text-xs text-slate-400">Tocca una voce per precompilare il modulo qui sotto</span>
+        <h2 class="font-display text-sm font-extrabold uppercase tracking-wider text-slate-700">Comandi Rapidi</h2>
+        <span class="text-xs text-slate-400">2 righe da 3 — tocca per compilare il modulo</span>
       </div>
-      <div class="flex flex-wrap gap-2">
-        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-amber-100 hover:bg-amber-200 text-amber-900 transition">🛒 Spesa</button>
-        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-sky-100 hover:bg-sky-200 text-sky-900 transition">⚡ Bolletta</button>
-        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-orange-100 hover:bg-orange-200 text-orange-900 transition">🏠 Quota Mensile</button>
-        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-cyan-100 hover:bg-cyan-200 text-cyan-900 transition">🧂 Clinica del Sale</button>
-        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-900 transition">🗣️ Logopedista Tommy</button>
-        <button type="button" data-quick="uscita|Viaggi e Vacanze|Viaggi e vacanze" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-violet-100 hover:bg-violet-200 text-violet-900 transition">✈️ Viaggi e Vacanze</button>
-        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-900 transition">💶 Nuova Entrata</button>
+
+      <div class="grid grid-cols-3 gap-2.5">
+        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-amber-100 hover:bg-amber-200 text-amber-900 transition truncate">
+          🛒 Spesa
+        </button>
+        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-sky-100 hover:bg-sky-200 text-sky-900 transition truncate">
+          ⚡ Bolletta
+        </button>
+        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-orange-100 hover:bg-orange-200 text-orange-900 transition truncate">
+          🏠 Quota Mensile
+        </button>
+
+        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-cyan-100 hover:bg-cyan-200 text-cyan-900 transition truncate">
+          🧂 Clinica del Sale
+        </button>
+        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-900 transition truncate">
+          🗣️ Logopedista Tommy
+        </button>
+        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-3 py-2.5 rounded-2xl text-xs font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-900 transition truncate">
+          💶 Nuova Entrata
+        </button>
       </div>
     </section>
 
@@ -303,7 +315,7 @@
       messagingSenderId: "320243941396",
       appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
       measurementId: "G-GV32S3W16V"
-    };[cite: 8]
+    };[cite: 6]
 
     const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
     const inputSaldoEl = document.getElementById("inputSaldoIniziale");
@@ -355,12 +367,9 @@
       const movMese = movimenti.filter((m) => String(m.data || "").startsWith(meseCorrenteStr));
       const entrateMese = movMese.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
       const usciteMese = movMese.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
-      const tutteUscite = movimenti.filter((m) => m.tipo === "uscita");
-      const totTutteUscite = tutteUscite.reduce((a, b) => a + Number(b.importo || 0), 0);
 
       document.getElementById("meseEntrate").textContent = eur.format(entrateMese);
       document.getElementById("meseUscite").textContent = eur.format(usciteMese);
-      document.getElementById("mediaUscita").textContent = eur.format(tutteUscite.length ? totTutteUscite / tutteUscite.length : 0);
       document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
 
       const totaliCat = {};
@@ -437,8 +446,8 @@
       document.getElementById("kpiSaldo").textContent = eur.format(saldo);
       document.getElementById("kpiEntrate").textContent = eur.format(entrate);
       document.getElementById("kpiUscite").textContent = eur.format(uscite);
-      document.getElementById("kpiConteggioEntrate").textContent = `${movimenti.filter((m) => m.tipo === "entrata").length} entrate registrate`;
-      document.getElementById("kpiConteggioUscite").textContent = `${movimenti.filter((m) => m.tipo === "uscita").length} uscite registrate`;
+      document.getElementById("kpiConteggioEntrate").textContent = `${movimenti.filter((m) => m.tipo === "entrata").length} entrate`;
+      document.getElementById("kpiConteggioUscite").textContent = `${movimenti.filter((m) => m.tipo === "uscita").length} uscite`;
 
       if (document.activeElement !== inputSaldoEl) {
         inputSaldoEl.value = Number(saldoIniziale || 0).toFixed(2);
@@ -497,11 +506,11 @@
           renderApp();
         },
         (err) => {
-          console.error(err);
+          console.error("Errore impostazioni Firestore:", err);
           impostaStatoCloud(
             "errore",
-            "Errore regole Firestore",
-            `<strong>Errore Firestore:</strong> ${err.message || "controlla le regole del database."}`,
+            "Errore Firestore",
+            `<strong>Errore Firestore:</strong> ${err.code || err.message || "controlla database e regole."}`,
             `Progetto: ${firebaseConfig.projectId}`
           );
         }
@@ -520,11 +529,11 @@
           renderApp();
         },
         (err) => {
-          console.error(err);
+          console.error("Errore movimenti Firestore:", err);
           impostaStatoCloud(
             "errore",
-            "Errore lettura movimenti",
-            `<strong>Errore lettura Firestore:</strong> ${err.message || "verifica i permessi del database."}`,
+            "Errore lettura Firestore",
+            `<strong>Errore lettura Firestore:</strong> ${err.code || err.message || "verifica database e regole."}`,
             `Progetto: ${firebaseConfig.projectId}`
           );
         }
@@ -532,11 +541,21 @@
 
       document.getElementById("btnSalvaSaldo").addEventListener("click", async () => {
         const valore = Number(inputSaldoEl.value || 0);
-        await setDoc(
-          doc(db, "impostazioni", "principale"),
-          { saldoIniziale: valore, updatedAt: serverTimestamp() },
-          { merge: true }
-        );
+        try {
+          await setDoc(
+            doc(db, "impostazioni", "principale"),
+            { saldoIniziale: valore, updatedAt: serverTimestamp() },
+            { merge: true }
+          );
+        } catch (err) {
+          console.error("Errore salvataggio saldo:", err);
+          impostaStatoCloud(
+            "errore",
+            "Salvataggio bloccato",
+            `<strong>Impossibile salvare il saldo:</strong> ${err.code || err.message}`,
+            `Progetto: ${firebaseConfig.projectId}`
+          );
+        }
       });
 
       document.getElementById("formMovimento").addEventListener("submit", async (e) => {
@@ -549,32 +568,53 @@
         const descrizione = document.getElementById("descrizione").value.trim();
         if (!importo || importo <= 0 || !data) return;
 
-        await addDoc(collection(db, "movimenti"), {
-          tipo,
-          utente,
-          categoria,
-          importo,
-          data,
-          descrizione,
-          createdAt: serverTimestamp()
-        });
+        try {
+          await addDoc(collection(db, "movimenti"), {
+            tipo,
+            utente,
+            categoria,
+            importo,
+            data,
+            descrizione,
+            createdAt: serverTimestamp()
+          });
 
-        document.getElementById("importo").value = "";
-        document.getElementById("descrizione").value = "";
+          document.getElementById("importo").value = "";
+          document.getElementById("descrizione").value = "";
+        } catch (err) {
+          console.error("Errore salvataggio movimento:", err);
+          impostaStatoCloud(
+            "errore",
+            "Salvataggio bloccato",
+            `<strong>Impossibile salvare il movimento:</strong> ${err.code || err.message}`,
+            `Progetto: ${firebaseConfig.projectId}`
+          );
+        }
       });
 
       document.getElementById("tabellaMovimenti").addEventListener("click", async (e) => {
         const btn = e.target.closest(".btn-elimina");
         if (!btn) return;
         const id = btn.getAttribute("data-delete-id");
-        if (id) await deleteDoc(doc(db, "movimenti", id));
+        if (!id) return;
+        try {
+          await deleteDoc(doc(db, "movimenti", id));
+        } catch (err) {
+          console.error("Errore eliminazione movimento:", err);
+          impostaStatoCloud(
+            "errore",
+            "Eliminazione bloccata",
+            `<strong>Impossibile eliminare il movimento:</strong> ${err.code || err.message}`,
+            `Progetto: ${firebaseConfig.projectId}`
+          );
+        }
       });
     } catch (err) {
-      console.error(err);
+      console.error("Errore inizializzazione Firebase:", err);
       impostaStatoCloud(
         "errore",
         "Errore inizializzazione",
-        `<strong>Errore Firebase:</strong> ${err.message || "verifica la configurazione."}`,
+        `<strong>Errore Firebase:</strong> ${err.code || err.message || "verifica la configurazione."}`,
         `Progetto: ${firebaseConfig.projectId}`
       );
     }
