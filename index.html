@@ -53,7 +53,7 @@
     <!-- Banner Stato Cloud -->
     <div id="bannerCloud" class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3.5 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div id="bannerCloudTesto">
-        <strong>Connessione Cloud:</strong> verifica connessione con Cloud Firestore in corso...
+        <strong>Connessione Cloud:</strong> collegamento a Cloud Firestore in corso...
       </div>
       <span id="cloudProjectBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white/80 border border-amber-200 self-start sm:self-auto">
         Progetto: bilancio-familiare-39bd4
@@ -138,6 +138,57 @@
       </div>
     </section>
 
+    <!-- Nuovo Widget: Resoconto Entrate e Uscite (Giornaliero / Settimanale / Mensile / Annuale) -->
+    <section class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
+          <h2 class="font-display text-base sm:text-lg font-extrabold text-slate-900">Resoconto Entrate e Uscite</h2>
+          <p id="descrizionePeriodoResoconto" class="text-xs text-slate-500">Periodo selezionato: Mensile</p>
+        </div>
+
+        <div class="inline-flex flex-wrap gap-1.5 bg-slate-100 p-1.5 rounded-2xl">
+          <button type="button" data-periodo="giornaliero" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition">
+            Giornaliero
+          </button>
+          <button type="button" data-periodo="settimanale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+            Settimanale
+          </button>
+          <button type="button" data-periodo="mensile" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+            Mensile
+          </button>
+          <button type="button" data-periodo="annuale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+            Annuale
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="rounded-2xl p-4 bg-emerald-50/80 border border-emerald-200/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-700">Entrate Periodo</span>
+          <p id="resEntrate" class="mt-1.5 font-display text-2xl font-extrabold text-emerald-700">€ 0,00</p>
+          <p id="resConteggioEntrate" class="mt-1 text-xs text-emerald-900/70">0 entrate</p>
+        </div>
+
+        <div class="rounded-2xl p-4 bg-rose-50/80 border border-rose-200/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700">Uscite Periodo</span>
+          <p id="resUscite" class="mt-1.5 font-display text-2xl font-extrabold text-rose-700">€ 0,00</p>
+          <p id="resConteggioUscite" class="mt-1 text-xs text-rose-900/70">0 uscite</p>
+        </div>
+
+        <div class="rounded-2xl p-4 bg-indigo-50/80 border border-indigo-200/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-700">Netto Periodo</span>
+          <p id="resNetto" class="mt-1.5 font-display text-2xl font-extrabold text-indigo-800">€ 0,00</p>
+          <p class="mt-1 text-xs text-indigo-900/70">Entrate − Uscite</p>
+        </div>
+
+        <div class="rounded-2xl p-4 bg-slate-50 border border-slate-200/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Operazioni Periodo</span>
+          <p id="resOperazioni" class="mt-1.5 font-display text-2xl font-extrabold text-slate-900">0</p>
+          <p id="resIntervalloDate" class="mt-1 text-xs text-slate-500">—</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Comandi Rapidi Leggermente Più Grandi in 2 Righe da 3 -->
     <section class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-3.5">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
@@ -195,7 +246,6 @@
           </div>
         </div>
 
-        <!-- Categoria con possibilità di scrivere a mano tramite "Aggiungi categoria" -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
             <label for="categoria" class="block text-xs font-semibold text-slate-600">Categoria</label>
@@ -347,7 +397,7 @@
       messagingSenderId: "320243941396",
       appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
       measurementId: "G-GV32S3W16V"
-    };[cite: 6]
+    }; //[cite: 6]
 
     const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
     const inputSaldoEl = document.getElementById("inputSaldoIniziale");
@@ -368,10 +418,9 @@
     let movimenti = [];
     let categoriePersonalizzate = [];
     let saldoIniziale = 0;
+    let periodoResoconto = "mensile";
     let chartCategorie = null;
     let chartFlusso = null;
-    let impostazioniPronte = false;
-    let movimentiPronti = false;
 
     const categorieBase = [
       "Spesa",
@@ -413,6 +462,76 @@
       }
     }
 
+    function aggiornaBottoniPeriodo() {
+      document.querySelectorAll(".btn-periodo").forEach((btn) => {
+        const attivo = btn.getAttribute("data-periodo") === periodoResoconto;
+        btn.className = attivo
+          ? "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition"
+          : "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition";
+      });
+    }
+
+    function aggiornaResocontoPeriodo() {
+      aggiornaBottoniPeriodo();
+
+      const rifDateStr = dataInputEl.value || oggi.toISOString().slice(0, 10);
+      const [annoStr, meseStr, giornoStr] = rifDateStr.split("-");
+      const dataRif = new Date(Number(annoStr), Number(meseStr) - 1, Number(giornoStr));
+
+      let movPeriodo = [];
+      let etichettaPeriodo = "Mensile";
+      let intervalloTesto = "";
+
+      if (periodoResoconto === "giornaliero") {
+        etichettaPeriodo = "Giornaliero";
+        intervalloTesto = dataRif.toLocaleDateString("it-IT");
+        movPeriodo = movimenti.filter((m) => m.data === rifDateStr);
+      } else if (periodoResoconto === "settimanale") {
+        etichettaPeriodo = "Settimanale";
+        const giornoSett = (dataRif.getDay() + 6) % 7; // lun = 0, dom = 6
+        const inizioSett = new Date(dataRif);
+        inizioSett.setDate(dataRif.getDate() - giornoSett);
+        inizioSett.setHours(0, 0, 0, 0);
+
+        const fineSett = new Date(inizioSett);
+        fineSett.setDate(inizioSett.getDate() + 6);
+        fineSett.setHours(23, 59, 59, 999);
+
+        intervalloTesto = `${inizioSett.toLocaleDateString("it-IT")} – ${fineSett.toLocaleDateString("it-IT")}`;
+        movPeriodo = movimenti.filter((m) => {
+          if (!m.data) return false;
+          const [y, mo, d] = String(m.data).split("-");
+          const dt = new Date(Number(y), Number(mo) - 1, Number(d));
+          return dt >= inizioSett && dt <= fineSett;
+        });
+      } else if (periodoResoconto === "annuale") {
+        etichettaPeriodo = "Annuale";
+        intervalloTesto = `Anno ${annoStr}`;
+        movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(`${annoStr}-`));
+      } else {
+        etichettaPeriodo = "Mensile";
+        const prefissoMese = `${annoStr}-${meseStr}`;
+        intervalloTesto = dataRif.toLocaleDateString("it-IT", { month: "long", year: "numeric" });
+        movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(prefissoMese));
+      }
+
+      const entrateP = movPeriodo.filter((m) => m.tipo === "entrata");
+      const usciteP = movPeriodo.filter((m) => m.tipo === "uscita");
+
+      const totEntrateP = entrateP.reduce((a, b) => a + Number(b.importo || 0), 0);
+      const totUsciteP = usciteP.reduce((a, b) => a + Number(b.importo || 0), 0);
+      const nettoP = totEntrateP - totUsciteP;
+
+      document.getElementById("descrizionePeriodoResoconto").textContent = `Periodo selezionato: ${etichettaPeriodo}`;
+      document.getElementById("resEntrate").textContent = eur.format(totEntrateP);
+      document.getElementById("resUscite").textContent = eur.format(totUsciteP);
+      document.getElementById("resNetto").textContent = eur.format(nettoP);
+      document.getElementById("resConteggioEntrate").textContent = `${entrateP.length} entrate`;
+      document.getElementById("resConteggioUscite").textContent = `${usciteP.length} uscite`;
+      document.getElementById("resOperazioni").textContent = String(movPeriodo.length);
+      document.getElementById("resIntervalloDate").textContent = intervalloTesto;
+    }
+
     function aggiornaSelectCategorie(selezionaValore = null) {
       const valoreCorrente = selezionaValore || categoriaSelectEl.value;
       const tutteLeCategorie = [...categorieBase];
@@ -443,6 +562,8 @@
       document.getElementById("meseEntrate").textContent = eur.format(entrateMese);
       document.getElementById("meseUscite").textContent = eur.format(usciteMese);
       document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
+
+      aggiornaResocontoPeriodo();
 
       const totaliCat = {};
       filtrati
@@ -561,7 +682,15 @@
 
     renderApp();
 
-    // Gestione pulsante "+ Aggiungi categoria" e scrittura a mano
+    document.querySelectorAll(".btn-periodo").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        periodoResoconto = btn.getAttribute("data-periodo") || "mensile";
+        aggiornaResocontoPeriodo();
+      });
+    });
+
+    dataInputEl.addEventListener("change", aggiornaResocontoPeriodo);
+
     document.getElementById("btnToggleNuovaCategoria").addEventListener("click", () => {
       boxNuovaCategoriaEl.classList.toggle("hidden");
       if (!boxNuovaCategoriaEl.classList.contains("hidden")) {
@@ -588,31 +717,18 @@
       }
     });
 
-    function segnaCloudPronto() {
-      if (impostazioniPronte && movimentiPronti) {
-        impostaStatoCloud(
-          "ok",
-          "Sincronizzato in tempo reale",
-          "<strong>Cloud attivo:</strong> le modifiche sono sincronizzate in tempo reale tra PC e cellulare.",
-          `Progetto: ${firebaseConfig.projectId}`
-        );
-      }
+    function attivaCloudVerde() {
+      impostaStatoCloud(
+        "ok",
+        "Sincronizzato in tempo reale",
+        "<strong>Cloud attivo:</strong> le modifiche sono sincronizzate in tempo reale tra PC e cellulare.",
+        `Progetto: ${firebaseConfig.projectId}`
+      );
     }
 
     try {
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
-
-      const timerAttesa = setTimeout(() => {
-        if (!impostazioniPronte || !movimentiPronti) {
-          impostaStatoCloud(
-            "attesa",
-            "Verifica Firestore...",
-            "<strong>Collegamento in corso:</strong> se il badge resta giallo, verifica in Firebase che il database Cloud Firestore sia attivo e che la pagina non sia in cache.",
-            `Progetto: ${firebaseConfig.projectId}`
-          );
-        }
-      }, 4500);
 
       onSnapshot(
         doc(db, "impostazioni", "principale"),
@@ -623,14 +739,11 @@
               categoriePersonalizzate = snap.data().categoriePersonalizzate;
             }
           }
-          impostazioniPronte = true;
-          clearTimeout(timerAttesa);
-          segnaCloudPronto();
+          attivaCloudVerde();
           renderApp();
         },
         (err) => {
           console.error("Errore impostazioni Firestore:", err);
-          clearTimeout(timerAttesa);
           impostaStatoCloud(
             "errore",
             "Errore Firestore",
@@ -644,14 +757,11 @@
         query(collection(db, "movimenti"), orderBy("data", "desc")),
         (snapshot) => {
           movimenti = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-          movimentiPronti = true;
-          clearTimeout(timerAttesa);
-          segnaCloudPronto();
+          attivaCloudVerde();
           renderApp();
         },
         (err) => {
           console.error("Errore movimenti Firestore:", err);
-          clearTimeout(timerAttesa);
           impostaStatoCloud(
             "errore",
             "Errore lettura Firestore",
@@ -673,6 +783,7 @@
             },
             { merge: true }
           );
+          attivaCloudVerde();
         } catch (err) {
           console.error("Errore salvataggio saldo:", err);
           impostaStatoCloud(
@@ -714,6 +825,7 @@
             );
           }
 
+          attivaCloudVerde();
           document.getElementById("importo").value = "";
           document.getElementById("descrizione").value = "";
         } catch (err) {
@@ -734,6 +846,7 @@
         if (!id) return;
         try {
           await deleteDoc(doc(db, "movimenti", id));
+          attivaCloudVerde();
         } catch (err) {
           console.error("Errore eliminazione movimento:", err);
           impostaStatoCloud(
