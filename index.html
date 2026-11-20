@@ -144,7 +144,7 @@
       </div>
     </section>
 
-    <!-- Resoconto Entrate e Uscite (Chiuso di default, si apre e chiude solo al clic sul bottone) -->
+    <!-- Resoconto Entrate e Uscite -->
     <section id="pannelloResoconto" class="hidden bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
@@ -196,7 +196,7 @@
     </section>
 
     <!-- Comandi Rapidi in 2 Righe da 3 -->
-    <section class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-3.5">
+    <section id="sezioneComandiRapidi" class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-3.5">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
         <h2 class="font-display text-sm font-extrabold uppercase tracking-wider text-slate-700">Comandi Rapidi</h2>
         <span class="text-xs text-slate-400">2 righe da 3 — tocca per compilare il modulo</span>
@@ -380,7 +380,48 @@
 
   </div>
 
-  <!-- Script UI & Pulsanti (sempre attivo) -->
+  <!-- Gestione Comandi Rapidi (isolata e immediata) -->
+  <script>
+    (function () {
+      function applicaComandoRapido(payload) {
+        if (!payload) return;
+        const parti = String(payload).split("|");
+        const tipo = parti[0] || "uscita";
+        const categoria = parti[1] || "Altro";
+        const descrizione = parti[2] || "";
+
+        const tipoEl = document.getElementById("tipo");
+        const catEl = document.getElementById("categoria");
+        const descEl = document.getElementById("descrizione");
+        const impEl = document.getElementById("importo");
+
+        if (tipoEl) tipoEl.value = tipo;
+        if (catEl) {
+          let trovata = Array.from(catEl.options).some((opt) => opt.value === categoria);
+          if (!trovata && categoria) {
+            const opt = document.createElement("option");
+            opt.value = categoria;
+            opt.textContent = categoria;
+            catEl.appendChild(opt);
+          }
+          catEl.value = categoria;
+        }
+        if (descEl) descEl.value = descrizione;
+        if (impEl) {
+          impEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          impEl.focus();
+        }
+      }
+
+      document.addEventListener("click", function (event) {
+        const btn = event.target.closest("[data-quick], .quick-btn");
+        if (!btn) return;
+        applicaComandoRapido(btn.getAttribute("data-quick"));
+      });
+    })();
+  </script>
+
+  <!-- Script UI generale -->
   <script>
     (function () {
       const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
@@ -394,13 +435,13 @@
 
       const oggi = new Date();
       const oggiIso = `${oggi.getFullYear()}-${String(oggi.getMonth() + 1).padStart(2, "0")}-${String(oggi.getDate()).padStart(2, "0")}`;
-      if (!dataInputEl.value) dataInputEl.value = oggiIso;
+      if (dataInputEl && !dataInputEl.value) dataInputEl.value = oggiIso;
 
       const meseCorrenteStr = `${oggi.getFullYear()}-${String(oggi.getMonth() + 1).padStart(2, "0")}`;
-      document.getElementById("etichettaMese").textContent = oggi.toLocaleDateString("it-IT", {
-        month: "long",
-        year: "numeric"
-      });
+      const etichettaMeseEl = document.getElementById("etichettaMese");
+      if (etichettaMeseEl) {
+        etichettaMeseEl.textContent = oggi.toLocaleDateString("it-IT", { month: "long", year: "numeric" });
+      }
 
       const categorieBase = [
         "Spesa",
@@ -431,28 +472,29 @@
         const bannerTesto = document.getElementById("bannerCloudTesto");
         const projBadge = document.getElementById("cloudProjectBadge");
 
-        text.textContent = testo;
-        if (badgeText) projBadge.textContent = badgeText;
+        if (text) text.textContent = testo;
+        if (projBadge && badgeText) projBadge.textContent = badgeText;
 
         if (stato === "ok") {
-          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800";
-          dot.className = "w-2 h-2 rounded-full bg-emerald-500";
-          banner.className = "bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-          bannerTesto.innerHTML = bannerMsg || "<strong>Cloud attivo:</strong> ogni modifica su PC o smartphone si sincronizza in tempo reale.";
+          if (badge) badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800";
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-500";
+          if (banner) banner.className = "bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          if (bannerTesto) bannerTesto.innerHTML = bannerMsg || "<strong>Cloud attivo:</strong> ogni modifica su PC o smartphone si sincronizza in tempo reale.";
         } else if (stato === "errore") {
-          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-rose-100 text-rose-800";
-          dot.className = "w-2 h-2 rounded-full bg-rose-500";
-          banner.className = "bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-          bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica database e regole Firestore.";
+          if (badge) badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-rose-100 text-rose-800";
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-rose-500";
+          if (banner) banner.className = "bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          if (bannerTesto) bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica database e regole Firestore.";
         } else {
-          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
-          dot.className = "w-2 h-2 rounded-full bg-amber-500";
-          banner.className = "bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-          bannerTesto.innerHTML = bannerMsg || "<strong>Connessione Cloud:</strong> collegamento a Cloud Firestore in corso...";
+          if (badge) badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-amber-500";
+          if (banner) banner.className = "bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          if (bannerTesto) bannerTesto.innerHTML = bannerMsg || "<strong>Connessione Cloud:</strong> collegamento a Cloud Firestore in corso...";
         }
       };
 
       window.aggiornaSelectCategorie = function (selezionaValore) {
+        if (!categoriaSelectEl) return;
         const valoreCorrente = selezionaValore || categoriaSelectEl.value;
         const tutteLeCategorie = [...categorieBase];
 
@@ -485,7 +527,7 @@
 
       window.aggiornaResocontoPeriodo = function () {
         aggiornaBottoniPeriodo();
-        const rifDateStr = dataInputEl.value || oggiIso;
+        const rifDateStr = (dataInputEl && dataInputEl.value) || oggiIso;
         const [annoStr, meseStr, giornoStr] = rifDateStr.split("-");
         const dataRif = new Date(Number(annoStr), Number(meseStr) - 1, Number(giornoStr));
         const periodo = window.__appState.periodoResoconto;
@@ -556,53 +598,59 @@
             totaliCat[c] = (totaliCat[c] || 0) + Number(m.importo || 0);
           });
 
-        const ctxCat = document.getElementById("graficoCategorie").getContext("2d");
-        if (chartCategorie) chartCategorie.destroy();
-        chartCategorie = new Chart(ctxCat, {
-          type: "doughnut",
-          data: {
-            labels: Object.keys(totaliCat).length ? Object.keys(totaliCat) : ["Nessuna uscita"],
-            datasets: [{
-              data: Object.values(totaliCat).length ? Object.values(totaliCat) : [1],
-              backgroundColor: ["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#14b8a6", "#64748b"]
-            }]
-          },
-          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
-        });
+        const canvasCat = document.getElementById("graficoCategorie");
+        if (canvasCat) {
+          const ctxCat = canvasCat.getContext("2d");
+          if (chartCategorie) chartCategorie.destroy();
+          chartCategorie = new Chart(ctxCat, {
+            type: "doughnut",
+            data: {
+              labels: Object.keys(totaliCat).length ? Object.keys(totaliCat) : ["Nessuna uscita"],
+              datasets: [{
+                data: Object.values(totaliCat).length ? Object.values(totaliCat) : [1],
+                backgroundColor: ["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#14b8a6", "#64748b"]
+              }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
+          });
+        }
 
         const totEnt = filtrati.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
         const totUsc = filtrati.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
 
-        const ctxFlusso = document.getElementById("graficoFlusso").getContext("2d");
-        if (chartFlusso) chartFlusso.destroy();
-        chartFlusso = new Chart(ctxFlusso, {
-          type: "bar",
-          data: {
-            labels: ["Entrate", "Uscite"],
-            datasets: [{
-              label: "Euro (€)",
-              data: [totEnt, totUsc],
-              backgroundColor: ["#34d399", "#fb7185"],
-              borderRadius: 10
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: { color: "#cbd5e1" },
-                grid: { color: "rgba(255,255,255,0.1)" }
-              },
-              x: {
-                ticks: { color: "#f8fafc" },
-                grid: { display: false }
+        const canvasFlusso = document.getElementById("graficoFlusso");
+        if (canvasFlusso) {
+          const ctxFlusso = canvasFlusso.getContext("2d");
+          if (chartFlusso) chartFlusso.destroy();
+          chartFlusso = new Chart(ctxFlusso, {
+            type: "bar",
+            data: {
+              labels: ["Entrate", "Uscite"],
+              datasets: [{
+                label: "Euro (€)",
+                data: [totEnt, totUsc],
+                backgroundColor: ["#34d399", "#fb7185"],
+                borderRadius: 10
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: { color: "#cbd5e1" },
+                  grid: { color: "rgba(255,255,255,0.1)" }
+                },
+                x: {
+                  ticks: { color: "#f8fafc" },
+                  grid: { display: false }
+                }
               }
             }
-          }
-        });
+          });
+        }
       }
 
       window.renderApp = function () {
@@ -610,8 +658,10 @@
 
         const movimenti = window.__appState.movimenti;
         const saldoIniziale = Number(window.__appState.saldoIniziale || 0);
-        const fUtente = document.getElementById("filtroUtente").value;
-        const fTipo = document.getElementById("filtroTipo").value;
+        const fUtenteEl = document.getElementById("filtroUtente");
+        const fTipoEl = document.getElementById("filtroTipo");
+        const fUtente = fUtenteEl ? fUtenteEl.value : "TUTTI";
+        const fTipo = fTipoEl ? fTipoEl.value : "TUTTI";
 
         const filtrati = movimenti.filter((m) => {
           const okUtente = fUtente === "TUTTI" || m.utente === fUtente;
@@ -636,58 +686,62 @@
         document.getElementById("kpiConteggioEntrate").textContent = `${movimenti.filter((m) => m.tipo === "entrata").length} entrate`;
         document.getElementById("kpiConteggioUscite").textContent = `${movimenti.filter((m) => m.tipo === "uscita").length} uscite`;
 
-        if (document.activeElement !== inputSaldoEl) {
+        if (inputSaldoEl && document.activeElement !== inputSaldoEl) {
           inputSaldoEl.value = saldoIniziale.toFixed(2);
         }
 
         const tbody = document.getElementById("tabellaMovimenti");
-        if (!filtrati.length) {
-          tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Nessun movimento da mostrare</td></tr>`;
-        } else {
-          tbody.innerHTML = filtrati.map((m) => {
-            const isEnt = m.tipo === "entrata";
-            return `
-              <tr class="hover:bg-slate-50">
-                <td class="py-3 px-3 whitespace-nowrap text-slate-600">${m.data || ""}</td>
-                <td class="py-3 px-3 whitespace-nowrap">
-                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">${m.utente || "Famiglia"}</span>
-                </td>
-                <td class="py-3 px-3 whitespace-nowrap">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">${m.categoria || ""}</span>
-                </td>
-                <td class="py-3 px-3 text-slate-700 font-medium">${m.descrizione || "-"}</td>
-                <td class="py-3 px-3 whitespace-nowrap text-right font-bold ${isEnt ? "text-emerald-600" : "text-rose-600"}">
-                  ${isEnt ? "+" : "-"} ${eur.format(Number(m.importo || 0))}
-                </td>
-                <td class="py-3 px-3 whitespace-nowrap text-right">
-                  <button type="button" data-delete-id="${m.id}" class="btn-elimina px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition cursor-pointer">
-                    Elimina
-                  </button>
-                </td>
-              </tr>
-            `;
-          }).join("");
+        if (tbody) {
+          if (!filtrati.length) {
+            tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Nessun movimento da mostrare</td></tr>`;
+          } else {
+            tbody.innerHTML = filtrati.map((m) => {
+              const isEnt = m.tipo === "entrata";
+              return `
+                <tr class="hover:bg-slate-50">
+                  <td class="py-3 px-3 whitespace-nowrap text-slate-600">${m.data || ""}</td>
+                  <td class="py-3 px-3 whitespace-nowrap">
+                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">${m.utente || "Famiglia"}</span>
+                  </td>
+                  <td class="py-3 px-3 whitespace-nowrap">
+                    <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">${m.categoria || ""}</span>
+                  </td>
+                  <td class="py-3 px-3 text-slate-700 font-medium">${m.descrizione || "-"}</td>
+                  <td class="py-3 px-3 whitespace-nowrap text-right font-bold ${isEnt ? "text-emerald-600" : "text-rose-600"}">
+                    ${isEnt ? "+" : "-"} ${eur.format(Number(m.importo || 0))}
+                  </td>
+                  <td class="py-3 px-3 whitespace-nowrap text-right">
+                    <button type="button" data-delete-id="${m.id}" class="btn-elimina px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition cursor-pointer">
+                      Elimina
+                    </button>
+                  </td>
+                </tr>
+              `;
+            }).join("");
+          }
         }
 
-        if (!pannelloResocontoEl.classList.contains("hidden")) {
+        if (pannelloResocontoEl && !pannelloResocontoEl.classList.contains("hidden")) {
           window.aggiornaResocontoPeriodo();
         }
         aggiornaGrafici(filtrati);
       };
 
-      btnToggleResocontoEl.addEventListener("click", () => {
-        const aperto = !pannelloResocontoEl.classList.contains("hidden");
-        if (aperto) {
-          pannelloResocontoEl.classList.add("hidden");
-          btnToggleResocontoEl.setAttribute("aria-expanded", "false");
-          btnToggleResocontoEl.textContent = "📊 Resoconto";
-        } else {
-          pannelloResocontoEl.classList.remove("hidden");
-          btnToggleResocontoEl.setAttribute("aria-expanded", "true");
-          btnToggleResocontoEl.textContent = "✕ Chiudi Resoconto";
-          window.aggiornaResocontoPeriodo();
-        }
-      });
+      if (btnToggleResocontoEl && pannelloResocontoEl) {
+        btnToggleResocontoEl.addEventListener("click", () => {
+          const aperto = !pannelloResocontoEl.classList.contains("hidden");
+          if (aperto) {
+            pannelloResocontoEl.classList.add("hidden");
+            btnToggleResocontoEl.setAttribute("aria-expanded", "false");
+            btnToggleResocontoEl.textContent = "📊 Resoconto";
+          } else {
+            pannelloResocontoEl.classList.remove("hidden");
+            btnToggleResocontoEl.setAttribute("aria-expanded", "true");
+            btnToggleResocontoEl.textContent = "✕ Chiudi Resoconto";
+            window.aggiornaResocontoPeriodo();
+          }
+        });
+      }
 
       document.querySelectorAll(".btn-periodo").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -696,20 +750,26 @@
         });
       });
 
-      dataInputEl.addEventListener("change", () => {
-        if (!pannelloResocontoEl.classList.contains("hidden")) {
-          window.aggiornaResocontoPeriodo();
-        }
-      });
+      if (dataInputEl) {
+        dataInputEl.addEventListener("change", () => {
+          if (pannelloResocontoEl && !pannelloResocontoEl.classList.contains("hidden")) {
+            window.aggiornaResocontoPeriodo();
+          }
+        });
+      }
 
-      document.getElementById("btnToggleNuovaCategoria").addEventListener("click", () => {
-        boxNuovaCategoriaEl.classList.toggle("hidden");
-        if (!boxNuovaCategoriaEl.classList.contains("hidden")) {
-          inputNuovaCategoriaEl.focus();
-        }
-      });
+      const btnToggleNuovaCategoria = document.getElementById("btnToggleNuovaCategoria");
+      if (btnToggleNuovaCategoria && boxNuovaCategoriaEl) {
+        btnToggleNuovaCategoria.addEventListener("click", () => {
+          boxNuovaCategoriaEl.classList.toggle("hidden");
+          if (!boxNuovaCategoriaEl.classList.contains("hidden") && inputNuovaCategoriaEl) {
+            inputNuovaCategoriaEl.focus();
+          }
+        });
+      }
 
       function aggiungiCategoriaManuale() {
+        if (!inputNuovaCategoriaEl) return;
         const nuova = inputNuovaCategoriaEl.value.trim();
         if (!nuova) return;
         if (!window.__appState.categoriePersonalizzate.includes(nuova)) {
@@ -717,34 +777,33 @@
         }
         window.aggiornaSelectCategorie(nuova);
         inputNuovaCategoriaEl.value = "";
-        boxNuovaCategoriaEl.classList.add("hidden");
+        if (boxNuovaCategoriaEl) boxNuovaCategoriaEl.classList.add("hidden");
       }
 
-      document.getElementById("btnConfermaCategoria").addEventListener("click", aggiungiCategoriaManuale);
-      inputNuovaCategoriaEl.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          aggiungiCategoriaManuale();
-        }
-      });
-
-      document.querySelectorAll(".quick-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const [tipo, categoria, descrizione] = btn.getAttribute("data-quick").split("|");
-          document.getElementById("tipo").value = tipo;
-          window.aggiornaSelectCategorie(categoria);
-          document.getElementById("descrizione").value = descrizione;
-          document.getElementById("importo").focus();
+      const btnConfermaCategoria = document.getElementById("btnConfermaCategoria");
+      if (btnConfermaCategoria) btnConfermaCategoria.addEventListener("click", aggiungiCategoriaManuale);
+      if (inputNuovaCategoriaEl) {
+        inputNuovaCategoriaEl.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            aggiungiCategoriaManuale();
+          }
         });
-      });
+      }
 
-      document.getElementById("filtroUtente").addEventListener("change", window.renderApp);
-      document.getElementById("filtroTipo").addEventListener("change", window.renderApp);
-      document.getElementById("btnResetFiltri").addEventListener("click", () => {
-        document.getElementById("filtroUtente").value = "TUTTI";
-        document.getElementById("filtroTipo").value = "TUTTI";
-        window.renderApp();
-      });
+      const filtroUtenteEl = document.getElementById("filtroUtente");
+      const filtroTipoEl = document.getElementById("filtroTipo");
+      const btnResetFiltriEl = document.getElementById("btnResetFiltri");
+
+      if (filtroUtenteEl) filtroUtenteEl.addEventListener("change", window.renderApp);
+      if (filtroTipoEl) filtroTipoEl.addEventListener("change", window.renderApp);
+      if (btnResetFiltriEl) {
+        btnResetFiltriEl.addEventListener("click", () => {
+          if (filtroUtenteEl) filtroUtenteEl.value = "TUTTI";
+          if (filtroTipoEl) filtroTipoEl.value = "TUTTI";
+          window.renderApp();
+        });
+      }
 
       window.renderApp();
     })();
