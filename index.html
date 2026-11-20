@@ -42,7 +42,7 @@
       <div class="flex flex-wrap items-center gap-2.5">
         <span id="syncStatus" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
           <span id="syncDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
-          <span id="syncText">In attesa di firebaseConfig</span>
+          <span id="syncText">Connessione in corso...</span>
         </span>
         <button id="btnResetFiltri" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
           Azzera filtri
@@ -53,10 +53,10 @@
     <!-- Avviso configurazione / cloud -->
     <div id="bannerCloud" class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3.5 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div id="bannerCloudTesto">
-        <strong>Stato Cloud:</strong> inserisci i dati reali di <code>firebaseConfig</code> nello script in fondo al file per attivare Firestore.
+        <strong>Connessione al cloud in corso:</strong> collegamento a Cloud Firestore in corso...
       </div>
       <span id="cloudProjectBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white/80 border border-amber-200 self-start sm:self-auto">
-        Progetto: non configurato
+        Progetto: bilancio-familiare-39bd4
       </span>
     </div>
 
@@ -319,21 +319,15 @@
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // INCOLLA QUI I VALORI DELLA TUA APP WEB FIREBASE
     const firebaseConfig = {
-      apiKey: "INSERISCI_API_KEY",
-      authDomain: "INSERISCI_AUTH_DOMAIN",
-      projectId: "INSERISCI_PROJECT_ID",
-      storageBucket: "INSERISCI_STORAGE_BUCKET",
-      messagingSenderId: "INSERISCI_MESSAGING_SENDER_ID",
-      appId: "INSERISCI_APP_ID"
-    };
-
-    const requiredKeys = ["apiKey", "authDomain", "projectId", "storageBucket", "messagingSenderId", "appId"];
-    const configValido = requiredKeys.every((key) => {
-      const val = firebaseConfig[key];
-      return typeof val === "string" && val.trim() !== "" && !val.startsWith("INSERISCI_");
-    });
+      apiKey: "AIzaSyC6ZFAolvBCoc-ZD8SpclibVwapl3TLJ70",
+      authDomain: "bilancio-familiare-39bd4.firebaseapp.com",
+      projectId: "bilancio-familiare-39bd4",
+      storageBucket: "bilancio-familiare-39bd4.firebasestorage.app",
+      messagingSenderId: "320243941396",
+      appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
+      measurementId: "G-GV32S3W16V"
+    }; //
 
     const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
     const inputSaldoEl = document.getElementById("inputSaldoIniziale");
@@ -372,12 +366,12 @@
         badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-rose-100 text-rose-800";
         dot.className = "w-2 h-2 rounded-full bg-rose-500";
         banner.className = "bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-        bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica <code>firebaseConfig</code> e le regole di Firestore.";
+        bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica le regole di Firestore.";
       } else {
         badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
         dot.className = "w-2 h-2 rounded-full bg-amber-500";
         banner.className = "bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-        bannerTesto.innerHTML = bannerMsg || "<strong>Cloud in attesa:</strong> sostituisci i campi <code>INSERISCI_...</code> in <code>firebaseConfig</code> per attivare il collegamento.";
+        bannerTesto.innerHTML = bannerMsg || "<strong>Connessione al cloud in corso:</strong> collegamento a Cloud Firestore...";
       }
     }
 
@@ -513,22 +507,9 @@
       aggiornaWidgetExtra(filtrati);
     }
 
-    if (!configValido) {
-      impostaStatoCloud(
-        "attesa",
-        "Configurazione mancante",
-        "<strong>Cloud in attesa (pallino giallo):</strong> incolla i tuoi dati reali di <code>firebaseConfig</code> dentro lo script in fondo al file per attivare Firestore.",
-        "Progetto: da configurare"
-      );
-      renderApp();
-    } else {
-      impostaStatoCloud(
-        "attesa",
-        "Connessione in corso...",
-        "<strong>Connessione al cloud in corso:</strong> collegamento a Cloud Firestore...",
-        `Progetto: ${firebaseConfig.projectId}`
-      );
+    renderApp();
 
+    try {
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
@@ -550,8 +531,8 @@
           console.error(err);
           impostaStatoCloud(
             "errore",
-            "Errore regole o config",
-            `<strong>Errore Firestore:</strong> ${err.message || "controlla firebaseConfig e le regole del database."}`,
+            "Errore regole Firestore",
+            `<strong>Errore Firestore:</strong> ${err.message || "controlla le regole del database."}`,
             `Progetto: ${firebaseConfig.projectId}`
           );
         }
@@ -619,6 +600,14 @@
         const id = btn.getAttribute("data-delete-id");
         if (id) await deleteDoc(doc(db, "movimenti", id));
       });
+    } catch (err) {
+      console.error(err);
+      impostaStatoCloud(
+        "errore",
+        "Errore inizializzazione",
+        `<strong>Errore Firebase:</strong> ${err.message || "verifica la configurazione."}`,
+        `Progetto: ${firebaseConfig.projectId}`
+      );
     }
 
     document.querySelectorAll(".quick-btn").forEach((btn) => {
