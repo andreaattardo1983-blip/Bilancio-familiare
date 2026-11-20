@@ -44,10 +44,10 @@
           <span id="syncDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
           <span id="syncText">Connessione al cloud...</span>
         </span>
-        <button id="btnToggleResoconto" type="button" aria-expanded="false" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition">
+        <button id="btnToggleResoconto" type="button" aria-expanded="false" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs transition cursor-pointer">
           📊 Resoconto
         </button>
-        <button id="btnResetFiltri" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+        <button id="btnResetFiltri" type="button" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer">
           Azzera filtri
         </button>
       </div>
@@ -91,7 +91,7 @@
             <button
               id="btnSalvaSaldo"
               type="button"
-              class="px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold transition shrink-0"
+              class="px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold transition shrink-0 cursor-pointer"
             >
               Salva
             </button>
@@ -153,16 +153,16 @@
         </div>
 
         <div class="inline-flex flex-wrap gap-1.5 bg-slate-100 p-1.5 rounded-2xl">
-          <button type="button" data-periodo="giornaliero" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition">
+          <button type="button" data-periodo="giornaliero" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition cursor-pointer">
             Giornaliero
           </button>
-          <button type="button" data-periodo="settimanale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+          <button type="button" data-periodo="settimanale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition cursor-pointer">
             Settimanale
           </button>
-          <button type="button" data-periodo="mensile" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+          <button type="button" data-periodo="mensile" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition cursor-pointer">
             Mensile
           </button>
-          <button type="button" data-periodo="annuale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+          <button type="button" data-periodo="annuale" class="btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition cursor-pointer">
             Annuale
           </button>
         </div>
@@ -195,7 +195,7 @@
       </div>
     </section>
 
-    <!-- Comandi Rapidi Leggermente Più Grandi in 2 Righe da 3 -->
+    <!-- Comandi Rapidi in 2 Righe da 3 -->
     <section class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-3.5">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
         <h2 class="font-display text-sm font-extrabold uppercase tracking-wider text-slate-700">Comandi Rapidi</h2>
@@ -203,23 +203,23 @@
       </div>
 
       <div class="grid grid-cols-3 gap-3 sm:gap-3.5">
-        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-amber-100 hover:bg-amber-200 text-amber-950 shadow-xs transition truncate">
+        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-amber-100 hover:bg-amber-200 text-amber-950 shadow-xs transition truncate cursor-pointer">
           🛒 Spesa
         </button>
-        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-sky-100 hover:bg-sky-200 text-sky-950 shadow-xs transition truncate">
+        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-sky-100 hover:bg-sky-200 text-sky-950 shadow-xs transition truncate cursor-pointer">
           ⚡ Bolletta
         </button>
-        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-orange-100 hover:bg-orange-200 text-orange-950 shadow-xs transition truncate">
+        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-orange-100 hover:bg-orange-200 text-orange-950 shadow-xs transition truncate cursor-pointer">
           🏠 Quota Mensile
         </button>
 
-        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-cyan-100 hover:bg-cyan-200 text-cyan-950 shadow-xs transition truncate">
+        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-cyan-100 hover:bg-cyan-200 text-cyan-950 shadow-xs transition truncate cursor-pointer">
           🧂 Clinica del Sale
         </button>
-        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-950 shadow-xs transition truncate">
+        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-950 shadow-xs transition truncate cursor-pointer">
           🗣️ Logopedista Tommy
         </button>
-        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-950 shadow-xs transition truncate">
+        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-4 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-sm font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-950 shadow-xs transition truncate cursor-pointer">
           💶 Nuova Entrata
         </button>
       </div>
@@ -258,7 +258,7 @@
             <button
               id="btnToggleNuovaCategoria"
               type="button"
-              class="text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition"
+              class="text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition cursor-pointer"
             >
               + Aggiungi categoria
             </button>
@@ -289,7 +289,7 @@
               <button
                 id="btnConfermaCategoria"
                 type="button"
-                class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 transition"
+                class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0 transition cursor-pointer"
               >
                 Aggiungi
               </button>
@@ -313,7 +313,7 @@
           <input id="descrizione" type="text" placeholder="Es. spesa al supermercato, bolletta luce..." class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
         </div>
 
-        <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm shadow-sm transition">
+        <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm shadow-sm transition cursor-pointer">
           Salva nel Cloud
         </button>
       </form>
@@ -380,6 +380,377 @@
 
   </div>
 
+  <!-- Script UI & Pulsanti (sempre attivo) -->
+  <script>
+    (function () {
+      const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
+      const inputSaldoEl = document.getElementById("inputSaldoIniziale");
+      const dataInputEl = document.getElementById("data");
+      const categoriaSelectEl = document.getElementById("categoria");
+      const boxNuovaCategoriaEl = document.getElementById("boxNuovaCategoria");
+      const inputNuovaCategoriaEl = document.getElementById("inputNuovaCategoria");
+      const pannelloResocontoEl = document.getElementById("pannelloResoconto");
+      const btnToggleResocontoEl = document.getElementById("btnToggleResoconto");
+
+      const oggi = new Date();
+      const oggiIso = `${oggi.getFullYear()}-${String(oggi.getMonth() + 1).padStart(2, "0")}-${String(oggi.getDate()).padStart(2, "0")}`;
+      if (!dataInputEl.value) dataInputEl.value = oggiIso;
+
+      const meseCorrenteStr = `${oggi.getFullYear()}-${String(oggi.getMonth() + 1).padStart(2, "0")}`;
+      document.getElementById("etichettaMese").textContent = oggi.toLocaleDateString("it-IT", {
+        month: "long",
+        year: "numeric"
+      });
+
+      const categorieBase = [
+        "Spesa",
+        "Bolletta",
+        "Quota Mensile",
+        "Clinica del Sale",
+        "Logopedista Tommy",
+        "Viaggi e Vacanze",
+        "Stipendio",
+        "Altro"
+      ];
+
+      window.__appState = {
+        movimenti: [],
+        categoriePersonalizzate: [],
+        saldoIniziale: 0,
+        periodoResoconto: "mensile"
+      };
+
+      let chartCategorie = null;
+      let chartFlusso = null;
+
+      window.impostaStatoCloud = function (stato, testo, bannerMsg, badgeText) {
+        const dot = document.getElementById("syncDot");
+        const text = document.getElementById("syncText");
+        const badge = document.getElementById("syncStatus");
+        const banner = document.getElementById("bannerCloud");
+        const bannerTesto = document.getElementById("bannerCloudTesto");
+        const projBadge = document.getElementById("cloudProjectBadge");
+
+        text.textContent = testo;
+        if (badgeText) projBadge.textContent = badgeText;
+
+        if (stato === "ok") {
+          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800";
+          dot.className = "w-2 h-2 rounded-full bg-emerald-500";
+          banner.className = "bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          bannerTesto.innerHTML = bannerMsg || "<strong>Cloud attivo:</strong> ogni modifica su PC o smartphone si sincronizza in tempo reale.";
+        } else if (stato === "errore") {
+          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-rose-100 text-rose-800";
+          dot.className = "w-2 h-2 rounded-full bg-rose-500";
+          banner.className = "bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica database e regole Firestore.";
+        } else {
+          badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
+          dot.className = "w-2 h-2 rounded-full bg-amber-500";
+          banner.className = "bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
+          bannerTesto.innerHTML = bannerMsg || "<strong>Connessione Cloud:</strong> collegamento a Cloud Firestore in corso...";
+        }
+      };
+
+      window.aggiornaSelectCategorie = function (selezionaValore) {
+        const valoreCorrente = selezionaValore || categoriaSelectEl.value;
+        const tutteLeCategorie = [...categorieBase];
+
+        [...window.__appState.categoriePersonalizzate, ...window.__appState.movimenti.map((m) => m.categoria)].forEach((cat) => {
+          if (typeof cat === "string" && cat.trim() !== "") {
+            const pulita = cat.trim();
+            if (!tutteLeCategorie.includes(pulita)) {
+              tutteLeCategorie.push(pulita);
+            }
+          }
+        });
+
+        categoriaSelectEl.innerHTML = tutteLeCategorie
+          .map((cat) => `<option value="${cat.replace(/"/g, "&quot;")}">${cat}</option>`)
+          .join("");
+
+        if (valoreCorrente && tutteLeCategorie.includes(valoreCorrente)) {
+          categoriaSelectEl.value = valoreCorrente;
+        }
+      };
+
+      function aggiornaBottoniPeriodo() {
+        document.querySelectorAll(".btn-periodo").forEach((btn) => {
+          const attivo = btn.getAttribute("data-periodo") === window.__appState.periodoResoconto;
+          btn.className = attivo
+            ? "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition cursor-pointer"
+            : "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition cursor-pointer";
+        });
+      }
+
+      window.aggiornaResocontoPeriodo = function () {
+        aggiornaBottoniPeriodo();
+        const rifDateStr = dataInputEl.value || oggiIso;
+        const [annoStr, meseStr, giornoStr] = rifDateStr.split("-");
+        const dataRif = new Date(Number(annoStr), Number(meseStr) - 1, Number(giornoStr));
+        const periodo = window.__appState.periodoResoconto;
+        const movimenti = window.__appState.movimenti;
+
+        let movPeriodo = [];
+        let etichettaPeriodo = "Mensile";
+        let intervalloTesto = "";
+
+        if (periodo === "giornaliero") {
+          etichettaPeriodo = "Giornaliero";
+          intervalloTesto = dataRif.toLocaleDateString("it-IT");
+          movPeriodo = movimenti.filter((m) => m.data === rifDateStr);
+        } else if (periodo === "settimanale") {
+          etichettaPeriodo = "Settimanale";
+          const giornoSett = (dataRif.getDay() + 6) % 7;
+          const inizioSett = new Date(dataRif);
+          inizioSett.setDate(dataRif.getDate() - giornoSett);
+          inizioSett.setHours(0, 0, 0, 0);
+
+          const fineSett = new Date(inizioSett);
+          fineSett.setDate(inizioSett.getDate() + 6);
+          fineSett.setHours(23, 59, 59, 999);
+
+          intervalloTesto = `${inizioSett.toLocaleDateString("it-IT")} – ${fineSett.toLocaleDateString("it-IT")}`;
+          movPeriodo = movimenti.filter((m) => {
+            if (!m.data) return false;
+            const [y, mo, d] = String(m.data).split("-");
+            const dt = new Date(Number(y), Number(mo) - 1, Number(d));
+            return dt >= inizioSett && dt <= fineSett;
+          });
+        } else if (periodo === "annuale") {
+          etichettaPeriodo = "Annuale";
+          intervalloTesto = `Anno ${annoStr}`;
+          movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(`${annoStr}-`));
+        } else {
+          etichettaPeriodo = "Mensile";
+          const prefissoMese = `${annoStr}-${meseStr}`;
+          intervalloTesto = dataRif.toLocaleDateString("it-IT", { month: "long", year: "numeric" });
+          movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(prefissoMese));
+        }
+
+        const entrateP = movPeriodo.filter((m) => m.tipo === "entrata");
+        const usciteP = movPeriodo.filter((m) => m.tipo === "uscita");
+
+        const totEntrateP = entrateP.reduce((a, b) => a + Number(b.importo || 0), 0);
+        const totUsciteP = usciteP.reduce((a, b) => a + Number(b.importo || 0), 0);
+        const nettoP = totEntrateP - totUsciteP;
+
+        document.getElementById("descrizionePeriodoResoconto").textContent = `Periodo selezionato: ${etichettaPeriodo}`;
+        document.getElementById("resEntrate").textContent = eur.format(totEntrateP);
+        document.getElementById("resUscite").textContent = eur.format(totUsciteP);
+        document.getElementById("resNetto").textContent = eur.format(nettoP);
+        document.getElementById("resConteggioEntrate").textContent = `${entrateP.length} entrate`;
+        document.getElementById("resConteggioUscite").textContent = `${usciteP.length} uscite`;
+        document.getElementById("resOperazioni").textContent = String(movPeriodo.length);
+        document.getElementById("resIntervalloDate").textContent = intervalloTesto;
+      };
+
+      function aggiornaGrafici(filtrati) {
+        if (typeof Chart === "undefined") return;
+
+        const totaliCat = {};
+        filtrati
+          .filter((m) => m.tipo === "uscita")
+          .forEach((m) => {
+            const c = m.categoria || "Altro";
+            totaliCat[c] = (totaliCat[c] || 0) + Number(m.importo || 0);
+          });
+
+        const ctxCat = document.getElementById("graficoCategorie").getContext("2d");
+        if (chartCategorie) chartCategorie.destroy();
+        chartCategorie = new Chart(ctxCat, {
+          type: "doughnut",
+          data: {
+            labels: Object.keys(totaliCat).length ? Object.keys(totaliCat) : ["Nessuna uscita"],
+            datasets: [{
+              data: Object.values(totaliCat).length ? Object.values(totaliCat) : [1],
+              backgroundColor: ["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#14b8a6", "#64748b"]
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
+        });
+
+        const totEnt = filtrati.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
+        const totUsc = filtrati.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
+
+        const ctxFlusso = document.getElementById("graficoFlusso").getContext("2d");
+        if (chartFlusso) chartFlusso.destroy();
+        chartFlusso = new Chart(ctxFlusso, {
+          type: "bar",
+          data: {
+            labels: ["Entrate", "Uscite"],
+            datasets: [{
+              label: "Euro (€)",
+              data: [totEnt, totUsc],
+              backgroundColor: ["#34d399", "#fb7185"],
+              borderRadius: 10
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { color: "#cbd5e1" },
+                grid: { color: "rgba(255,255,255,0.1)" }
+              },
+              x: {
+                ticks: { color: "#f8fafc" },
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      }
+
+      window.renderApp = function () {
+        window.aggiornaSelectCategorie();
+
+        const movimenti = window.__appState.movimenti;
+        const saldoIniziale = Number(window.__appState.saldoIniziale || 0);
+        const fUtente = document.getElementById("filtroUtente").value;
+        const fTipo = document.getElementById("filtroTipo").value;
+
+        const filtrati = movimenti.filter((m) => {
+          const okUtente = fUtente === "TUTTI" || m.utente === fUtente;
+          const okTipo = fTipo === "TUTTI" || m.tipo === fTipo;
+          return okUtente && okTipo;
+        });
+
+        const entrate = movimenti.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
+        const uscite = movimenti.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
+        const saldo = saldoIniziale + entrate - uscite;
+
+        const movMese = movimenti.filter((m) => String(m.data || "").startsWith(meseCorrenteStr));
+        const entrateMese = movMese.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
+        const usciteMese = movMese.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
+
+        document.getElementById("kpiSaldo").textContent = eur.format(saldo);
+        document.getElementById("kpiEntrate").textContent = eur.format(entrate);
+        document.getElementById("kpiUscite").textContent = eur.format(uscite);
+        document.getElementById("meseEntrate").textContent = eur.format(entrateMese);
+        document.getElementById("meseUscite").textContent = eur.format(usciteMese);
+        document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
+        document.getElementById("kpiConteggioEntrate").textContent = `${movimenti.filter((m) => m.tipo === "entrata").length} entrate`;
+        document.getElementById("kpiConteggioUscite").textContent = `${movimenti.filter((m) => m.tipo === "uscita").length} uscite`;
+
+        if (document.activeElement !== inputSaldoEl) {
+          inputSaldoEl.value = saldoIniziale.toFixed(2);
+        }
+
+        const tbody = document.getElementById("tabellaMovimenti");
+        if (!filtrati.length) {
+          tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Nessun movimento da mostrare</td></tr>`;
+        } else {
+          tbody.innerHTML = filtrati.map((m) => {
+            const isEnt = m.tipo === "entrata";
+            return `
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 px-3 whitespace-nowrap text-slate-600">${m.data || ""}</td>
+                <td class="py-3 px-3 whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">${m.utente || "Famiglia"}</span>
+                </td>
+                <td class="py-3 px-3 whitespace-nowrap">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">${m.categoria || ""}</span>
+                </td>
+                <td class="py-3 px-3 text-slate-700 font-medium">${m.descrizione || "-"}</td>
+                <td class="py-3 px-3 whitespace-nowrap text-right font-bold ${isEnt ? "text-emerald-600" : "text-rose-600"}">
+                  ${isEnt ? "+" : "-"} ${eur.format(Number(m.importo || 0))}
+                </td>
+                <td class="py-3 px-3 whitespace-nowrap text-right">
+                  <button type="button" data-delete-id="${m.id}" class="btn-elimina px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition cursor-pointer">
+                    Elimina
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join("");
+        }
+
+        if (!pannelloResocontoEl.classList.contains("hidden")) {
+          window.aggiornaResocontoPeriodo();
+        }
+        aggiornaGrafici(filtrati);
+      };
+
+      btnToggleResocontoEl.addEventListener("click", () => {
+        const aperto = !pannelloResocontoEl.classList.contains("hidden");
+        if (aperto) {
+          pannelloResocontoEl.classList.add("hidden");
+          btnToggleResocontoEl.setAttribute("aria-expanded", "false");
+          btnToggleResocontoEl.textContent = "📊 Resoconto";
+        } else {
+          pannelloResocontoEl.classList.remove("hidden");
+          btnToggleResocontoEl.setAttribute("aria-expanded", "true");
+          btnToggleResocontoEl.textContent = "✕ Chiudi Resoconto";
+          window.aggiornaResocontoPeriodo();
+        }
+      });
+
+      document.querySelectorAll(".btn-periodo").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.__appState.periodoResoconto = btn.getAttribute("data-periodo") || "mensile";
+          window.aggiornaResocontoPeriodo();
+        });
+      });
+
+      dataInputEl.addEventListener("change", () => {
+        if (!pannelloResocontoEl.classList.contains("hidden")) {
+          window.aggiornaResocontoPeriodo();
+        }
+      });
+
+      document.getElementById("btnToggleNuovaCategoria").addEventListener("click", () => {
+        boxNuovaCategoriaEl.classList.toggle("hidden");
+        if (!boxNuovaCategoriaEl.classList.contains("hidden")) {
+          inputNuovaCategoriaEl.focus();
+        }
+      });
+
+      function aggiungiCategoriaManuale() {
+        const nuova = inputNuovaCategoriaEl.value.trim();
+        if (!nuova) return;
+        if (!window.__appState.categoriePersonalizzate.includes(nuova)) {
+          window.__appState.categoriePersonalizzate.push(nuova);
+        }
+        window.aggiornaSelectCategorie(nuova);
+        inputNuovaCategoriaEl.value = "";
+        boxNuovaCategoriaEl.classList.add("hidden");
+      }
+
+      document.getElementById("btnConfermaCategoria").addEventListener("click", aggiungiCategoriaManuale);
+      inputNuovaCategoriaEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          aggiungiCategoriaManuale();
+        }
+      });
+
+      document.querySelectorAll(".quick-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const [tipo, categoria, descrizione] = btn.getAttribute("data-quick").split("|");
+          document.getElementById("tipo").value = tipo;
+          window.aggiornaSelectCategorie(categoria);
+          document.getElementById("descrizione").value = descrizione;
+          document.getElementById("importo").focus();
+        });
+      });
+
+      document.getElementById("filtroUtente").addEventListener("change", window.renderApp);
+      document.getElementById("filtroTipo").addEventListener("change", window.renderApp);
+      document.getElementById("btnResetFiltri").addEventListener("click", () => {
+        document.getElementById("filtroUtente").value = "TUTTI";
+        document.getElementById("filtroTipo").value = "TUTTI";
+        window.renderApp();
+      });
+
+      window.renderApp();
+    })();
+  </script>
+
+  <!-- Script Cloud Firestore -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import {
@@ -403,350 +774,10 @@
       messagingSenderId: "320243941396",
       appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
       measurementId: "G-GV32S3W16V"
-    };[cite: 6]
-
-    const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
-    const inputSaldoEl = document.getElementById("inputSaldoIniziale");
-    const dataInputEl = document.getElementById("data");
-    const categoriaSelectEl = document.getElementById("categoria");
-    const boxNuovaCategoriaEl = document.getElementById("boxNuovaCategoria");
-    const inputNuovaCategoriaEl = document.getElementById("inputNuovaCategoria");
-    const pannelloResocontoEl = document.getElementById("pannelloResoconto");
-    const btnToggleResocontoEl = document.getElementById("btnToggleResoconto");
-
-    dataInputEl.valueAsDate = new Date();
-
-    const oggi = new Date();
-    const meseCorrenteStr = `${oggi.getFullYear()}-${String(oggi.getMonth() + 1).padStart(2, "0")}`;
-    document.getElementById("etichettaMese").textContent = oggi.toLocaleDateString("it-IT", {
-      month: "long",
-      year: "numeric"
-    });
-
-    let movimenti = [];
-    let categoriePersonalizzate = [];
-    let saldoIniziale = 0;
-    let periodoResoconto = "mensile";
-    let chartCategorie = null;
-    let chartFlusso = null;
-
-    const categorieBase = [
-      "Spesa",
-      "Bolletta",
-      "Quota Mensile",
-      "Clinica del Sale",
-      "Logopedista Tommy",
-      "Viaggi e Vacanze",
-      "Stipendio",
-      "Altro"
-    ];
-
-    btnToggleResocontoEl.addEventListener("click", () => {
-      const aperto = !pannelloResocontoEl.classList.contains("hidden");
-      if (aperto) {
-        pannelloResocontoEl.classList.add("hidden");
-        btnToggleResocontoEl.setAttribute("aria-expanded", "false");
-        btnToggleResocontoEl.textContent = "📊 Resoconto";
-      } else {
-        pannelloResocontoEl.classList.remove("hidden");
-        btnToggleResocontoEl.setAttribute("aria-expanded", "true");
-        btnToggleResocontoEl.textContent = "✕ Chiudi Resoconto";
-        aggiornaResocontoPeriodo();
-      }
-    });
-
-    function impostaStatoCloud(stato, testo, bannerMsg, badgeText) {
-      const dot = document.getElementById("syncDot");
-      const text = document.getElementById("syncText");
-      const badge = document.getElementById("syncStatus");
-      const banner = document.getElementById("bannerCloud");
-      const bannerTesto = document.getElementById("bannerCloudTesto");
-      const projBadge = document.getElementById("cloudProjectBadge");
-
-      text.textContent = testo;
-      if (badgeText) projBadge.textContent = badgeText;
-
-      if (stato === "ok") {
-        badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800";
-        dot.className = "w-2 h-2 rounded-full bg-emerald-500";
-        banner.className = "bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-        bannerTesto.innerHTML = bannerMsg || "<strong>Cloud attivo:</strong> ogni modifica su PC o smartphone si sincronizza in tempo reale.";
-      } else if (stato === "errore") {
-        badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-rose-100 text-rose-800";
-        dot.className = "w-2 h-2 rounded-full bg-rose-500";
-        banner.className = "bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-        bannerTesto.innerHTML = bannerMsg || "<strong>Errore cloud:</strong> verifica database e regole Firestore.";
-      } else {
-        badge.className = "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-amber-100 text-amber-800";
-        dot.className = "w-2 h-2 rounded-full bg-amber-500";
-        banner.className = "bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2";
-        bannerTesto.innerHTML = bannerMsg || "<strong>Connessione al cloud in corso:</strong> collegamento a Cloud Firestore...";
-      }
-    }
-
-    function aggiornaBottoniPeriodo() {
-      document.querySelectorAll(".btn-periodo").forEach((btn) => {
-        const attivo = btn.getAttribute("data-periodo") === periodoResoconto;
-        btn.className = attivo
-          ? "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-slate-900 shadow-xs transition"
-          : "btn-periodo px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition";
-      });
-    }
-
-    function aggiornaResocontoPeriodo() {
-      aggiornaBottoniPeriodo();
-
-      const rifDateStr = dataInputEl.value || oggi.toISOString().slice(0, 10);
-      const [annoStr, meseStr, giornoStr] = rifDateStr.split("-");
-      const dataRif = new Date(Number(annoStr), Number(meseStr) - 1, Number(giornoStr));
-
-      let movPeriodo = [];
-      let etichettaPeriodo = "Mensile";
-      let intervalloTesto = "";
-
-      if (periodoResoconto === "giornaliero") {
-        etichettaPeriodo = "Giornaliero";
-        intervalloTesto = dataRif.toLocaleDateString("it-IT");
-        movPeriodo = movimenti.filter((m) => m.data === rifDateStr);
-      } else if (periodoResoconto === "settimanale") {
-        etichettaPeriodo = "Settimanale";
-        const giornoSett = (dataRif.getDay() + 6) % 7;
-        const inizioSett = new Date(dataRif);
-        inizioSett.setDate(dataRif.getDate() - giornoSett);
-        inizioSett.setHours(0, 0, 0, 0);
-
-        const fineSett = new Date(inizioSett);
-        fineSett.setDate(inizioSett.getDate() + 6);
-        fineSett.setHours(23, 59, 59, 999);
-
-        intervalloTesto = `${inizioSett.toLocaleDateString("it-IT")} – ${fineSett.toLocaleDateString("it-IT")}`;
-        movPeriodo = movimenti.filter((m) => {
-          if (!m.data) return false;
-          const [y, mo, d] = String(m.data).split("-");
-          const dt = new Date(Number(y), Number(mo) - 1, Number(d));
-          return dt >= inizioSett && dt <= fineSett;
-        });
-      } else if (periodoResoconto === "annuale") {
-        etichettaPeriodo = "Annuale";
-        intervalloTesto = `Anno ${annoStr}`;
-        movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(`${annoStr}-`));
-      } else {
-        etichettaPeriodo = "Mensile";
-        const prefissoMese = `${annoStr}-${meseStr}`;
-        intervalloTesto = dataRif.toLocaleDateString("it-IT", { month: "long", year: "numeric" });
-        movPeriodo = movimenti.filter((m) => String(m.data || "").startsWith(prefissoMese));
-      }
-
-      const entrateP = movPeriodo.filter((m) => m.tipo === "entrata");
-      const usciteP = movPeriodo.filter((m) => m.tipo === "uscita");
-
-      const totEntrateP = entrateP.reduce((a, b) => a + Number(b.importo || 0), 0);
-      const totUsciteP = usciteP.reduce((a, b) => a + Number(b.importo || 0), 0);
-      const nettoP = totEntrateP - totUsciteP;
-
-      document.getElementById("descrizionePeriodoResoconto").textContent = `Periodo selezionato: ${etichettaPeriodo}`;
-      document.getElementById("resEntrate").textContent = eur.format(totEntrateP);
-      document.getElementById("resUscite").textContent = eur.format(totUsciteP);
-      document.getElementById("resNetto").textContent = eur.format(nettoP);
-      document.getElementById("resConteggioEntrate").textContent = `${entrateP.length} entrate`;
-      document.getElementById("resConteggioUscite").textContent = `${usciteP.length} uscite`;
-      document.getElementById("resOperazioni").textContent = String(movPeriodo.length);
-      document.getElementById("resIntervalloDate").textContent = intervalloTesto;
-    }
-
-    function aggiornaSelectCategorie(selezionaValore = null) {
-      const valoreCorrente = selezionaValore || categoriaSelectEl.value;
-      const tutteLeCategorie = [...categorieBase];
-
-      [...categoriePersonalizzate, ...movimenti.map((m) => m.categoria)].forEach((cat) => {
-        if (typeof cat === "string" && cat.trim() !== "") {
-          const pulita = cat.trim();
-          if (!tutteLeCategorie.includes(pulita)) {
-            tutteLeCategorie.push(pulita);
-          }
-        }
-      });
-
-      categoriaSelectEl.innerHTML = tutteLeCategorie
-        .map((cat) => `<option value="${cat.replace(/"/g, "&quot;")}">${cat}</option>`)
-        .join("");
-
-      if (valoreCorrente && tutteLeCategorie.includes(valoreCorrente)) {
-        categoriaSelectEl.value = valoreCorrente;
-      }
-    }
-
-    function aggiornaWidgetExtra(filtrati) {
-      const movMese = movimenti.filter((m) => String(m.data || "").startsWith(meseCorrenteStr));
-      const entrateMese = movMese.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
-      const usciteMese = movMese.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
-
-      document.getElementById("meseEntrate").textContent = eur.format(entrateMese);
-      document.getElementById("meseUscite").textContent = eur.format(usciteMese);
-      document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
-
-      if (!pannelloResocontoEl.classList.contains("hidden")) {
-        aggiornaResocontoPeriodo();
-      }
-
-      const totaliCat = {};
-      filtrati
-        .filter((m) => m.tipo === "uscita")
-        .forEach((m) => {
-          const c = m.categoria || "Altro";
-          totaliCat[c] = (totaliCat[c] || 0) + Number(m.importo || 0);
-        });
-
-      const ctxCat = document.getElementById("graficoCategorie").getContext("2d");
-      if (chartCategorie) chartCategorie.destroy();
-      chartCategorie = new Chart(ctxCat, {
-        type: "doughnut",
-        data: {
-          labels: Object.keys(totaliCat).length ? Object.keys(totaliCat) : ["Nessuna uscita"],
-          datasets: [{
-            data: Object.values(totaliCat).length ? Object.values(totaliCat) : [1],
-            backgroundColor: ["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#14b8a6", "#64748b"]
-          }]
-        },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } }
-      });
-
-      const totEnt = filtrati.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
-      const totUsc = filtrati.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
-
-      const ctxFlusso = document.getElementById("graficoFlusso").getContext("2d");
-      if (chartFlusso) chartFlusso.destroy();
-      chartFlusso = new Chart(ctxFlusso, {
-        type: "bar",
-        data: {
-          labels: ["Entrate", "Uscite"],
-          datasets: [{
-            label: "Euro (€)",
-            data: [totEnt, totUsc],
-            backgroundColor: ["#34d399", "#fb7185"],
-            borderRadius: 10
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: { color: "#cbd5e1" },
-              grid: { color: "rgba(255,255,255,0.1)" }
-            },
-            x: {
-              ticks: { color: "#f8fafc" },
-              grid: { display: false }
-            }
-          }
-        }
-      });
-    }
-
-    function renderApp() {
-      aggiornaSelectCategorie();
-
-      const fUtente = document.getElementById("filtroUtente").value;
-      const fTipo = document.getElementById("filtroTipo").value;
-
-      const filtrati = movimenti.filter((m) => {
-        const okUtente = fUtente === "TUTTI" || m.utente === fUtente;
-        const okTipo = fTipo === "TUTTI" || m.tipo === fTipo;
-        return okUtente && okTipo;
-      });
-
-      const entrate = movimenti.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
-      const uscite = movimenti.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
-      const saldo = Number(saldoIniziale || 0) + entrate - uscite;
-
-      document.getElementById("kpiSaldo").textContent = eur.format(saldo);
-      document.getElementById("kpiEntrate").textContent = eur.format(entrate);
-      document.getElementById("kpiUscite").textContent = eur.format(uscite);
-      document.getElementById("kpiConteggioEntrate").textContent = `${movimenti.filter((m) => m.tipo === "entrata").length} entrate`;
-      document.getElementById("kpiConteggioUscite").textContent = `${movimenti.filter((m) => m.tipo === "uscita").length} uscite`;
-
-      if (document.activeElement !== inputSaldoEl) {
-        inputSaldoEl.value = Number(saldoIniziale || 0).toFixed(2);
-      }
-
-      const tbody = document.getElementById("tabellaMovimenti");
-      if (!filtrati.length) {
-        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Nessun movimento da mostrare</td></tr>`;
-      } else {
-        tbody.innerHTML = filtrati.map((m) => {
-          const isEnt = m.tipo === "entrata";
-          return `
-            <tr class="hover:bg-slate-50">
-              <td class="py-3 px-3 whitespace-nowrap text-slate-600">${m.data || ""}</td>
-              <td class="py-3 px-3 whitespace-nowrap">
-                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">${m.utente || "Famiglia"}</span>
-              </td>
-              <td class="py-3 px-3 whitespace-nowrap">
-                <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">${m.categoria || ""}</span>
-              </td>
-              <td class="py-3 px-3 text-slate-700 font-medium">${m.descrizione || "-"}</td>
-              <td class="py-3 px-3 whitespace-nowrap text-right font-bold ${isEnt ? "text-emerald-600" : "text-rose-600"}">
-                ${isEnt ? "+" : "-"} ${eur.format(Number(m.importo || 0))}
-              </td>
-              <td class="py-3 px-3 whitespace-nowrap text-right">
-                <button type="button" data-delete-id="${m.id}" class="btn-elimina px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition">
-                  Elimina
-                </button>
-              </td>
-            </tr>
-          `;
-        }).join("");
-      }
-
-      aggiornaWidgetExtra(filtrati);
-    }
-
-    renderApp();
-
-    document.querySelectorAll(".btn-periodo").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        periodoResoconto = btn.getAttribute("data-periodo") || "mensile";
-        aggiornaResocontoPeriodo();
-      });
-    });
-
-    dataInputEl.addEventListener("change", () => {
-      if (!pannelloResocontoEl.classList.contains("hidden")) {
-        aggiornaResocontoPeriodo();
-      }
-    });
-
-    document.getElementById("btnToggleNuovaCategoria").addEventListener("click", () => {
-      boxNuovaCategoriaEl.classList.toggle("hidden");
-      if (!boxNuovaCategoriaEl.classList.contains("hidden")) {
-        inputNuovaCategoriaEl.focus();
-      }
-    });
-
-    function aggiungiCategoriaManuale() {
-      const nuova = inputNuovaCategoriaEl.value.trim();
-      if (!nuova) return;
-      if (!categoriePersonalizzate.includes(nuova)) {
-        categoriePersonalizzate.push(nuova);
-      }
-      aggiornaSelectCategorie(nuova);
-      inputNuovaCategoriaEl.value = "";
-      boxNuovaCategoriaEl.classList.add("hidden");
-    }
-
-    document.getElementById("btnConfermaCategoria").addEventListener("click", aggiungiCategoriaManuale);
-    inputNuovaCategoriaEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        aggiungiCategoriaManuale();
-      }
-    });
+    };
 
     function attivaCloudVerde() {
-      impostaStatoCloud(
+      window.impostaStatoCloud(
         "ok",
         "Sincronizzato in tempo reale",
         "<strong>Cloud attivo:</strong> le modifiche sono sincronizzate in tempo reale tra PC e cellulare.",
@@ -762,17 +793,18 @@
         doc(db, "impostazioni", "principale"),
         (snap) => {
           if (snap.exists()) {
-            saldoIniziale = Number(snap.data().saldoIniziale || 0);
-            if (Array.isArray(snap.data().categoriePersonalizzate)) {
-              categoriePersonalizzate = snap.data().categoriePersonalizzate;
+            const dati = snap.data();
+            window.__appState.saldoIniziale = Number(dati.saldoIniziale || 0);
+            if (Array.isArray(dati.categoriePersonalizzate)) {
+              window.__appState.categoriePersonalizzate = dati.categoriePersonalizzate;
             }
           }
           attivaCloudVerde();
-          renderApp();
+          window.renderApp();
         },
         (err) => {
           console.error("Errore impostazioni Firestore:", err);
-          impostaStatoCloud(
+          window.impostaStatoCloud(
             "errore",
             "Errore Firestore",
             `<strong>Errore Firestore:</strong> ${err.code || err.message || "controlla database e regole."}`,
@@ -784,13 +816,13 @@
       onSnapshot(
         query(collection(db, "movimenti"), orderBy("data", "desc")),
         (snapshot) => {
-          movimenti = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+          window.__appState.movimenti = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
           attivaCloudVerde();
-          renderApp();
+          window.renderApp();
         },
         (err) => {
           console.error("Errore movimenti Firestore:", err);
-          impostaStatoCloud(
+          window.impostaStatoCloud(
             "errore",
             "Errore lettura Firestore",
             `<strong>Errore lettura Firestore:</strong> ${err.code || err.message || "verifica database e regole."}`,
@@ -800,13 +832,15 @@
       );
 
       document.getElementById("btnSalvaSaldo").addEventListener("click", async () => {
-        const valore = Number(inputSaldoEl.value || 0);
+        const valore = Number(document.getElementById("inputSaldoIniziale").value || 0);
+        window.__appState.saldoIniziale = valore;
+        window.renderApp();
         try {
           await setDoc(
             doc(db, "impostazioni", "principale"),
             {
               saldoIniziale: valore,
-              categoriePersonalizzate,
+              categoriePersonalizzate: window.__appState.categoriePersonalizzate,
               updatedAt: serverTimestamp()
             },
             { merge: true }
@@ -814,7 +848,7 @@
           attivaCloudVerde();
         } catch (err) {
           console.error("Errore salvataggio saldo:", err);
-          impostaStatoCloud(
+          window.impostaStatoCloud(
             "errore",
             "Salvataggio bloccato",
             `<strong>Impossibile salvare il saldo:</strong> ${err.code || err.message}`,
@@ -844,11 +878,14 @@
             createdAt: serverTimestamp()
           });
 
-          if (!categorieBase.includes(categoria) && !categoriePersonalizzate.includes(categoria)) {
-            categoriePersonalizzate.push(categoria);
+          if (!window.__appState.categoriePersonalizzate.includes(categoria)) {
+            window.__appState.categoriePersonalizzate.push(categoria);
             await setDoc(
               doc(db, "impostazioni", "principale"),
-              { categoriePersonalizzate, updatedAt: serverTimestamp() },
+              {
+                categoriePersonalizzate: window.__appState.categoriePersonalizzate,
+                updatedAt: serverTimestamp()
+              },
               { merge: true }
             );
           }
@@ -858,7 +895,7 @@
           document.getElementById("descrizione").value = "";
         } catch (err) {
           console.error("Errore salvataggio movimento:", err);
-          impostaStatoCloud(
+          window.impostaStatoCloud(
             "errore",
             "Salvataggio bloccato",
             `<strong>Impossibile salvare il movimento:</strong> ${err.code || err.message}`,
@@ -877,7 +914,7 @@
           attivaCloudVerde();
         } catch (err) {
           console.error("Errore eliminazione movimento:", err);
-          impostaStatoCloud(
+          window.impostaStatoCloud(
             "errore",
             "Eliminazione bloccata",
             `<strong>Impossibile eliminare il movimento:</strong> ${err.code || err.message}`,
@@ -887,31 +924,13 @@
       });
     } catch (err) {
       console.error("Errore inizializzazione Firebase:", err);
-      impostaStatoCloud(
+      window.impostaStatoCloud(
         "errore",
         "Errore inizializzazione",
         `<strong>Errore Firebase:</strong> ${err.code || err.message || "verifica la configurazione."}`,
         `Progetto: ${firebaseConfig.projectId}`
       );
     }
-
-    document.querySelectorAll(".quick-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const [tipo, categoria, descrizione] = btn.getAttribute("data-quick").split("|");
-        document.getElementById("tipo").value = tipo;
-        aggiornaSelectCategorie(categoria);
-        document.getElementById("descrizione").value = descrizione;
-        document.getElementById("importo").focus();
-      });
-    });
-
-    document.getElementById("filtroUtente").addEventListener("change", renderApp);
-    document.getElementById("filtroTipo").addEventListener("change", renderApp);
-    document.getElementById("btnResetFiltri").addEventListener("click", () => {
-      document.getElementById("filtroUtente").value = "TUTTI";
-      document.getElementById("filtroTipo").value = "TUTTI";
-      renderApp();
-    });
   </script>
 </body>
 </html>
