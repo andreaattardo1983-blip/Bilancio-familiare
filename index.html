@@ -24,18 +24,18 @@
     };
   </script>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen">
+<body class="bg-gradient-to-br from-slate-100 via-indigo-50/40 to-emerald-50/40 text-slate-800 min-h-screen">
   <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 space-y-6">
 
-    <!-- Header -->
-    <header class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+    <!-- Header Vivace -->
+    <header class="bg-white/95 backdrop-blur p-5 sm:p-6 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
       <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-2xl bg-emerald-600 text-white font-display font-extrabold text-lg flex items-center justify-center shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-500 text-white font-display font-extrabold text-xl flex items-center justify-center shadow-md shadow-emerald-500/20">
           CF
         </div>
         <div>
           <h1 class="font-display text-xl sm:text-2xl font-extrabold text-slate-900">CasaSmart Finance</h1>
-          <p class="text-xs sm:text-sm text-slate-500">Dashboard cloud in tempo reale — Andrea, Mariella &amp; Tommaso</p>
+          <p class="text-xs sm:text-sm text-slate-500">Spazio familiare in tempo reale — Andrea, Mariella &amp; Tommaso</p>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
       </div>
     </header>
 
-    <!-- Avviso configurazione / cloud -->
+    <!-- Banner Stato Cloud -->
     <div id="bannerCloud" class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3.5 rounded-2xl text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
       <div id="bannerCloudTesto">
         <strong>Connessione al cloud in corso:</strong> collegamento a Cloud Firestore in corso...
@@ -60,136 +60,138 @@
       </span>
     </div>
 
-    <!-- Riga 1: KPI Principali -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Saldo Attuale</p>
-        <p id="kpiSaldo" class="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-slate-900">€ 0,00</p>
-        <p id="kpiSaldoDettaglio" class="mt-1 text-xs text-slate-500">Saldo iniziale + entrate - uscite</p>
+    <!-- Bento Grid Principale: Riquadri Colorati di Diverse Dimensioni -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <!-- Riquadro Grande: Saldo Familiare -->
+      <div class="md:col-span-6 lg:col-span-5 rounded-3xl p-6 text-white bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 shadow-lg shadow-teal-600/15 flex flex-col justify-between min-h-[190px]">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-100">Saldo Familiare</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/15 backdrop-blur">Live Cloud</span>
+        </div>
+        <div class="my-3">
+          <p id="kpiSaldo" class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight">€ 0,00</p>
+          <p class="mt-1.5 text-xs sm:text-sm text-emerald-100/90">Saldo iniziale + tutte le entrate − tutte le uscite</p>
+        </div>
+        <div class="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-emerald-50">
+          <span id="etichettaMese" class="font-semibold capitalize"></span>
+          <span id="kpiConteggioTotale">0 movimenti totali</span>
+        </div>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-emerald-600">Entrate Totali</p>
-        <p id="kpiEntrate" class="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-emerald-600">€ 0,00</p>
-        <p id="kpiConteggioEntrate" class="mt-1 text-xs text-slate-500">0 entrate registrate</p>
+      <!-- Riquadro Medio: Entrate -->
+      <div class="md:col-span-6 lg:col-span-4 rounded-3xl p-6 bg-gradient-to-br from-lime-400/25 via-emerald-400/20 to-white border border-emerald-200/80 shadow-sm flex flex-col justify-between min-h-[190px]">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Entrate Totali</span>
+          <span class="w-9 h-9 rounded-2xl bg-emerald-500 text-white flex items-center justify-center font-bold text-base shadow-sm">+</span>
+        </div>
+        <div>
+          <p id="kpiEntrate" class="font-display text-3xl sm:text-4xl font-extrabold text-emerald-700">€ 0,00</p>
+          <p id="kpiConteggioEntrate" class="mt-1 text-xs font-medium text-emerald-900/70">0 entrate registrate</p>
+        </div>
+        <div class="text-xs font-semibold text-emerald-800 bg-emerald-100/70 px-3 py-1.5 rounded-xl flex items-center justify-between">
+          <span>Questo mese</span>
+          <span id="meseEntrate">€ 0,00</span>
+        </div>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-rose-600">Uscite Totali</p>
-        <p id="kpiUscite" class="mt-2 font-display text-2xl sm:text-3xl font-extrabold text-rose-600">€ 0,00</p>
-        <p id="kpiConteggioUscite" class="mt-1 text-xs text-slate-500">0 uscite registrate</p>
-      </div>
-
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-        <label for="inputSaldoIniziale" class="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+      <!-- Riquadro Compatto: Saldo Iniziale -->
+      <div class="md:col-span-6 lg:col-span-3 rounded-3xl p-5 bg-gradient-to-br from-violet-600 to-indigo-700 text-white shadow-md shadow-indigo-600/15 flex flex-col justify-between min-h-[190px]">
+        <label for="inputSaldoIniziale" class="block text-xs font-bold uppercase tracking-wider text-indigo-100">
           Saldo Iniziale (€)
         </label>
-        <div class="mt-2 flex items-center gap-2">
-          <input id="inputSaldoIniziale" type="number" step="0.01" placeholder="0.00" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500" />
-          <button id="btnSalvaSaldo" type="button" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition shrink-0">
-            Salva
+        <p class="text-xs text-indigo-100/85 mt-1">Base di partenza del conto condiviso.</p>
+        <div class="mt-3 space-y-2">
+          <input id="inputSaldoIniziale" type="number" step="0.01" placeholder="0.00" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/95 text-slate-900 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-300" />
+          <button id="btnSalvaSaldo" type="button" class="w-full py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold uppercase tracking-wider transition">
+            Aggiorna Saldo
           </button>
         </div>
       </div>
-    </section>
 
-    <!-- Riga 2: Widget Famiglia + Widget Mese Corrente -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div class="lg:col-span-2 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="font-display text-sm font-bold uppercase tracking-wider text-slate-700">Attività per membro</h2>
-          <span class="text-xs text-slate-400">Saldo netto per membro</span>
+      <!-- Riquadro Medio: Uscite -->
+      <div class="md:col-span-6 lg:col-span-5 rounded-3xl p-6 bg-gradient-to-br from-rose-500 via-pink-600 to-orange-500 text-white shadow-lg shadow-rose-500/15 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-widest text-rose-100">Uscite Totali</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/15">Spese</span>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-sm text-slate-800">Andrea</span>
-              <span id="badgeAndrea" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">0 mov.</span>
-            </div>
-            <p id="totaleAndrea" class="mt-2 text-base font-extrabold text-slate-900">€ 0,00</p>
+        <div class="my-2 flex flex-wrap items-baseline justify-between gap-2">
+          <p id="kpiUscite" class="font-display text-3xl sm:text-4xl font-extrabold">€ 0,00</p>
+          <span id="kpiConteggioUscite" class="text-xs font-semibold text-rose-100">0 uscite registrate</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/15 text-xs">
+          <div class="bg-white/10 rounded-xl px-3 py-2">
+            <span class="text-rose-100 block text-[11px]">Uscite mese</span>
+            <strong id="meseUscite" class="text-sm">€ 0,00</strong>
           </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-sm text-slate-800">Mariella</span>
-              <span id="badgeMariella" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-pink-100 text-pink-700">0 mov.</span>
-            </div>
-            <p id="totaleMariella" class="mt-2 text-base font-extrabold text-slate-900">€ 0,00</p>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-sm text-slate-800">Tommaso</span>
-              <span id="badgeTommaso" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">0 mov.</span>
-            </div>
-            <p id="totaleTommaso" class="mt-2 text-base font-extrabold text-slate-900">€ 0,00</p>
+          <div class="bg-white/10 rounded-xl px-3 py-2">
+            <span class="text-rose-100 block text-[11px]">Media uscita</span>
+            <strong id="mediaUscita" class="text-sm">€ 0,00</strong>
           </div>
         </div>
       </div>
 
-      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="font-display text-sm font-bold uppercase tracking-wider text-slate-700">Mese corrente</h2>
-          <span id="etichettaMese" class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full"></span>
-        </div>
-        <div class="space-y-2 text-sm">
-          <div class="flex items-center justify-between">
-            <span class="text-slate-500">Entrate del mese</span>
-            <span id="meseEntrate" class="font-bold text-emerald-600">€ 0,00</span>
+      <!-- Riquadro Largo Colorato: Riquadri Categorie Familiari -->
+      <div class="md:col-span-12 lg:col-span-7 rounded-3xl p-6 bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="font-display text-base font-extrabold text-slate-900">Riquadri Categorie Chiave</h2>
+            <p class="text-xs text-slate-500">Panoramica visiva delle spese principali di casa</p>
           </div>
-          <div class="flex items-center justify-between">
-            <span class="text-slate-500">Uscite del mese</span>
-            <span id="meseUscite" class="font-bold text-rose-600">€ 0,00</span>
+          <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600">Categorie</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="rounded-2xl p-3.5 bg-gradient-to-br from-amber-100 to-orange-100 border border-amber-200/80">
+            <span class="text-lg">🏠</span>
+            <p class="text-xs font-bold text-amber-950 mt-1">Quota Mensile</p>
+            <p id="focusQuota" class="font-display text-base font-extrabold text-amber-900 mt-0.5">€ 0,00</p>
           </div>
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-slate-500">Media per uscita</span>
-            <span id="mediaUscita" class="font-bold text-slate-800">€ 0,00</span>
+
+          <div class="rounded-2xl p-3.5 bg-gradient-to-br from-sky-100 to-cyan-100 border border-sky-200/80">
+            <span class="text-lg">🧂</span>
+            <p class="text-xs font-bold text-sky-950 mt-1">Clinica del Sale</p>
+            <p id="focusClinica" class="font-display text-base font-extrabold text-sky-900 mt-0.5">€ 0,00</p>
+          </div>
+
+          <div class="rounded-2xl p-3.5 bg-gradient-to-br from-fuchsia-100 to-pink-100 border border-fuchsia-200/80">
+            <span class="text-lg">🗣️</span>
+            <p class="text-xs font-bold text-fuchsia-950 mt-1">Logopedista Tommy</p>
+            <p id="focusLogopedista" class="font-display text-base font-extrabold text-fuchsia-900 mt-0.5">€ 0,00</p>
+          </div>
+
+          <div class="rounded-2xl p-3.5 bg-gradient-to-br from-emerald-100 to-teal-100 border border-emerald-200/80">
+            <span class="text-lg">✈️</span>
+            <p class="text-xs font-bold text-emerald-950 mt-1">Viaggi e Vacanze</p>
+            <p id="focusViaggi" class="font-display text-base font-extrabold text-emerald-900 mt-0.5">€ 0,00</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Riga 3: Focus Categorie Familiari & Azioni Rapide -->
-    <section class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-        <h2 class="font-display text-sm font-bold uppercase tracking-wider text-slate-700">Azioni rapide &amp; focus categorie</h2>
-        <span class="text-xs text-slate-400">Clicca un pulsante per compilare subito il modulo</span>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/70">
-          <p class="text-xs text-slate-500">Quota Mensile</p>
-          <p id="focusQuota" class="text-sm font-extrabold text-slate-900 mt-1">€ 0,00</p>
-        </div>
-        <div class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/70">
-          <p class="text-xs text-slate-500">Clinica del Sale</p>
-          <p id="focusClinica" class="text-sm font-extrabold text-slate-900 mt-1">€ 0,00</p>
-        </div>
-        <div class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/70">
-          <p class="text-xs text-slate-500">Logopedista Tommy</p>
-          <p id="focusLogopedista" class="text-sm font-extrabold text-slate-900 mt-1">€ 0,00</p>
-        </div>
-        <div class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/70">
-          <p class="text-xs text-slate-500">Viaggi e Vacanze</p>
-          <p id="focusViaggi" class="text-sm font-extrabold text-slate-900 mt-1">€ 0,00</p>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap gap-2 pt-1">
-        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">🛒 Spesa</button>
-        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">⚡ Bolletta</button>
-        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">🏠 Quota Mensile</button>
-        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">🧂 Clinica del Sale</button>
-        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">🗣️ Logopedista Tommy</button>
-        <button type="button" data-quick="uscita|Viaggi e Vacanze|Viaggi e vacanze" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">✈️ Viaggi e Vacanze</button>
-        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-3 py-2 rounded-xl text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-700 transition">💶 Nuova Entrata</button>
       </div>
     </section>
 
-    <!-- Riga 4: Modulo Inserimento + Due Grafici -->
-    <section class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-      <form id="formMovimento" class="xl:col-span-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <h2 class="font-display text-lg font-bold text-slate-900">Nuovo movimento</h2>
+    <!-- Azioni Rapide Colorate -->
+    <section class="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+        <h2 class="font-display text-sm font-extrabold uppercase tracking-wider text-slate-700">Inserimento Rapido</h2>
+        <span class="text-xs text-slate-400">Tocca una voce per precompilare il modulo qui sotto</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" data-quick="uscita|Spesa|Spesa alimentare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-amber-100 hover:bg-amber-200 text-amber-900 transition">🛒 Spesa</button>
+        <button type="button" data-quick="uscita|Bolletta|Bolletta casa" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-sky-100 hover:bg-sky-200 text-sky-900 transition">⚡ Bolletta</button>
+        <button type="button" data-quick="uscita|Quota Mensile|Quota mensile familiare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-orange-100 hover:bg-orange-200 text-orange-900 transition">🏠 Quota Mensile</button>
+        <button type="button" data-quick="uscita|Clinica del Sale|Seduta Clinica del Sale" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-cyan-100 hover:bg-cyan-200 text-cyan-900 transition">🧂 Clinica del Sale</button>
+        <button type="button" data-quick="uscita|Logopedista Tommy|Logopedista Tommaso" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-fuchsia-100 hover:bg-fuchsia-200 text-fuchsia-900 transition">🗣️ Logopedista Tommy</button>
+        <button type="button" data-quick="uscita|Viaggi e Vacanze|Viaggi e vacanze" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-violet-100 hover:bg-violet-200 text-violet-900 transition">✈️ Viaggi e Vacanze</button>
+        <button type="button" data-quick="entrata|Stipendio|Entrata familiare" class="quick-btn px-3.5 py-2 rounded-2xl text-xs font-bold bg-emerald-100 hover:bg-emerald-200 text-emerald-900 transition">💶 Nuova Entrata</button>
+      </div>
+    </section>
+
+    <!-- Modulo + Grafici Asimmetrici -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <form id="formMovimento" class="lg:col-span-4 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="font-display text-lg font-extrabold text-slate-900">Nuovo Movimento</h2>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700">Cloud</span>
+        </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
@@ -201,7 +203,7 @@
           </div>
 
           <div>
-            <label for="utente" class="block text-xs font-semibold text-slate-600 mb-1">Chi registra</label>
+            <label for="utente" class="block text-xs font-semibold text-slate-600 mb-1">Chi ha fatto l'operazione</label>
             <select id="utente" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
               <option value="Andrea">Andrea</option>
               <option value="Mariella">Mariella</option>
@@ -236,25 +238,25 @@
         </div>
 
         <div>
-          <label for="descrizione" class="block text-xs font-semibold text-slate-600 mb-1">Descrizione</label>
-          <input id="descrizione" type="text" placeholder="Es. supermercato, bolletta luce..." class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+          <label for="descrizione" class="block text-xs font-semibold text-slate-600 mb-1">Cosa è stato fatto / Descrizione</label>
+          <input id="descrizione" type="text" placeholder="Es. spesa al supermercato, bolletta luce..." class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
         </div>
 
-        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition">
-          Salva nel cloud
+        <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm shadow-sm transition">
+          Salva nel Cloud
         </button>
       </form>
 
-      <div class="xl:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-          <h2 class="font-display text-base font-bold text-slate-900 mb-3">Uscite per categoria</h2>
+      <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div class="md:col-span-7 bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
+          <h2 class="font-display text-base font-extrabold text-slate-900 mb-3">Distribuzione Uscite per Categoria</h2>
           <div class="relative h-64 w-full">
             <canvas id="graficoCategorie"></canvas>
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-          <h2 class="font-display text-base font-bold text-slate-900 mb-3">Entrate vs Uscite</h2>
+        <div class="md:col-span-5 bg-gradient-to-b from-slate-900 to-slate-800 text-white p-6 rounded-3xl shadow-sm flex flex-col justify-between">
+          <h2 class="font-display text-base font-extrabold mb-3">Entrate vs Uscite</h2>
           <div class="relative h-64 w-full">
             <canvas id="graficoFlusso"></canvas>
           </div>
@@ -262,13 +264,16 @@
       </div>
     </section>
 
-    <!-- Riga 5: Storico Movimenti -->
-    <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+    <!-- Storico Movimenti (mostra chi ha fatto cosa) -->
+    <section class="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-sm">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-        <h2 class="font-display text-lg font-bold text-slate-900">Storico movimenti</h2>
+        <div>
+          <h2 class="font-display text-lg font-extrabold text-slate-900">Registro Attività &amp; Movimenti</h2>
+          <p class="text-xs text-slate-500">Controlla rapidamente chi ha registrato cosa in tempo reale</p>
+        </div>
         <div class="flex flex-wrap gap-2">
           <select id="filtroUtente" class="px-3 py-2 rounded-xl border border-slate-300 text-xs font-semibold bg-white">
-            <option value="TUTTI">Tutti i membri</option>
+            <option value="TUTTI">Tutti (chi ha fatto cosa)</option>
             <option value="Andrea">Andrea</option>
             <option value="Mariella">Mariella</option>
             <option value="Tommaso">Tommaso</option>
@@ -286,9 +291,9 @@
           <thead>
             <tr class="border-b border-slate-200 text-xs uppercase text-slate-400">
               <th class="py-3 px-3">Data</th>
-              <th class="py-3 px-3">Membro</th>
+              <th class="py-3 px-3">Chi ha registrato</th>
               <th class="py-3 px-3">Categoria</th>
-              <th class="py-3 px-3">Descrizione</th>
+              <th class="py-3 px-3">Cosa è stato fatto</th>
               <th class="py-3 px-3 text-right">Importo</th>
               <th class="py-3 px-3 text-right">Azioni</th>
             </tr>
@@ -327,7 +332,7 @@
       messagingSenderId: "320243941396",
       appId: "1:320243941396:web:a1e162baf572bb1bd6a701",
       measurementId: "G-GV32S3W16V"
-    }; //
+    }; //[cite: 8]
 
     const eur = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
     const inputSaldoEl = document.getElementById("inputSaldoIniziale");
@@ -376,16 +381,6 @@
     }
 
     function aggiornaWidgetExtra(filtrati) {
-      ["Andrea", "Mariella", "Tommaso"].forEach((nome) => {
-        const movMembro = movimenti.filter((m) => m.utente === nome);
-        const totMembro = movMembro.reduce((acc, m) => {
-          const imp = Number(m.importo || 0);
-          return m.tipo === "entrata" ? acc + imp : acc - imp;
-        }, 0);
-        document.getElementById(`badge${nome}`).textContent = `${movMembro.length} mov.`;
-        document.getElementById(`totale${nome}`).textContent = eur.format(totMembro);
-      });
-
       const movMese = movimenti.filter((m) => String(m.data || "").startsWith(meseCorrenteStr));
       const entrateMese = movMese.filter((m) => m.tipo === "entrata").reduce((a, b) => a + Number(b.importo || 0), 0);
       const usciteMese = movMese.filter((m) => m.tipo === "uscita").reduce((a, b) => a + Number(b.importo || 0), 0);
@@ -395,6 +390,7 @@
       document.getElementById("meseEntrate").textContent = eur.format(entrateMese);
       document.getElementById("meseUscite").textContent = eur.format(usciteMese);
       document.getElementById("mediaUscita").textContent = eur.format(tutteUscite.length ? totTutteUscite / tutteUscite.length : 0);
+      document.getElementById("kpiConteggioTotale").textContent = `${movimenti.length} movimenti totali`;
 
       const sommaCategoria = (cat) =>
         movimenti
@@ -440,15 +436,25 @@
           datasets: [{
             label: "Euro (€)",
             data: [totEnt, totUsc],
-            backgroundColor: ["#10b981", "#f43f5e"],
-            borderRadius: 8
+            backgroundColor: ["#34d399", "#fb7185"],
+            borderRadius: 10
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           plugins: { legend: { display: false } },
-          scales: { y: { beginAtZero: true } }
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: "#cbd5e1" },
+              grid: { color: "rgba(255,255,255,0.1)" }
+            },
+            x: {
+              ticks: { color: "#f8fafc" },
+              grid: { display: false }
+            }
+          }
         }
       });
     }
@@ -486,11 +492,13 @@
           return `
             <tr class="hover:bg-slate-50">
               <td class="py-3 px-3 whitespace-nowrap text-slate-600">${m.data || ""}</td>
-              <td class="py-3 px-3 whitespace-nowrap font-semibold text-slate-800">${m.utente || ""}</td>
+              <td class="py-3 px-3 whitespace-nowrap">
+                <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700">${m.utente || "Famiglia"}</span>
+              </td>
               <td class="py-3 px-3 whitespace-nowrap">
                 <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">${m.categoria || ""}</span>
               </td>
-              <td class="py-3 px-3 text-slate-600">${m.descrizione || "-"}</td>
+              <td class="py-3 px-3 text-slate-700 font-medium">${m.descrizione || "-"}</td>
               <td class="py-3 px-3 whitespace-nowrap text-right font-bold ${isEnt ? "text-emerald-600" : "text-rose-600"}">
                 ${isEnt ? "+" : "-"} ${eur.format(Number(m.importo || 0))}
               </td>
